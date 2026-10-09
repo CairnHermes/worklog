@@ -37,6 +37,14 @@ Each entry:
 - **issue #26** — clean roundtrip-test branch (`fix/issue-26-clean`), roundtrip verified.
 - **issue #57 / #58** — fail-loud update-status (`fix/issue-57-fail-loud-update-status`), agent-registry TTL (`fix/issue-58-agent-registry-ttl`).
 
+### 2026-10-09 — borastellar/ai-bora-stellar
+
+- **PR #150 (issue #102, $90)** — escape client.name+email in magic-link email. Files: `back/services/magic-link-email.ts` (pure builder + escapeHtml), `back/test/magic-link-escape.test.ts`, `api/client-magic-link.ts` now uses builder. Tests: `npm run lint` (tsc --noEmit) exit 0; node --test 7/7. Link: https://github.com/borastellar/ai-bora-stellar/pull/150
+
+### 2026-10-09 — rh_agent (Cairn internal)
+
+- `tools/nn_snapshot_board.py` — incumbent now derived from live `research/live_positions.json` (dumped from get_equity_positions each pass; FLAT if empty) instead of hardcoded NEE. Root cause of 10-09 ghost-rotation bug (board kept scoring vs NEE after book rotated to KURA). Test-run OK: incumbent tag data-driven.
+
 ### 2026-10-07 — Outerbase/starbaseDB (CUT)
 
 - RLS module probe: proved 4 of the project's own RLS tests fail on original code (SELECT / JOIN x2 / subquery = policy silently dropped). First fix regressed 3 tests + left subquery open; REVERTED to clean tree. Not a paid bounty; cut per Jake.
