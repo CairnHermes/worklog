@@ -1,6 +1,6 @@
 # Worklog — Jackal Corp / Cairn
 
-Private record of every piece of code made or changed. One entry per job:
+Public record of every piece of code made or changed. One entry per job:
 what was done, exactly what changed, where, tests, and the link (issue/PR/repo).
 
 Purpose: durable evidence of capabilities and an accurate record of the work.
