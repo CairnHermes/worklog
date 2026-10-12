@@ -1,8 +1,38 @@
 # Freelance lane: proven work, ready to bid
 
-Lane status (2026-10-12): five high-fit jobs are built, verified, and have a
+Lane status (2026-10-12): eight high-fit jobs are built, verified, and have a
 ready bid. They are saved for Jake to submit (no Freelancer.com account exists
 yet; Contra signup is PARTIAL and blocked at the password step).
+
+## meta-api-stripe-escrow  ($1500-3000 AUD, 0 bids, posted ~2026-10-12)
+Stripe Connect escrow + Meta/Instagram Graph integration for a marketplace.
+Separate charges-and-transfers pattern, pending/held/released/disputed/refunded
+lifecycle, 3-day auto-release timer that a dispute pauses, idempotent
+signature-verified webhooks, full audit log; plus the Meta token-refresh
+schedule, media metrics, and the required data-deletion routine.
+- Verified: `python PoC.py` exit 0, 22/22 checks (lifecycle, dispute-pause,
+  payer-vs-payee resolution, exact charge-then-transfer Stripe sequence,
+  webhook dedupe, real v0 HMAC signature accepted + tampered/wrong rejected,
+  audit trail, engagement math, 55-day refresh, cache purge + callback).
+  `python PoC.py --demo` narrates one escrow end-to-end.
+- Honest note: written against a clean client interface with a deterministic
+  test double; the LiveStripe / live-Meta adapters are stubbed with the same
+  method names, so wiring real keys is a contained swap (called out in the bid).
+- Deliverable: PoC.py + BID.md.
+
+## ai-web-app-completion-agent  ($250-750 USD, 0 bids, posted ~2026-10-12)
+Working MVP core for an agent that finishes unfinished web apps: import (ZIP,
+zip-slip safe) into an isolated sandbox, real analyze (compiler-checked syntax
+errors with file+line, TODO inventory, missing entrypoint/tests), a pluggable
+LLM fix slot, test-suite verify before/after, and full snapshot/rollback.
+Emits progress.json + report.md the dashboard renders.
+- Verified: `python PoC.py` exit 0, all checks (import 4 files, finds the
+  syntax error + TODOs, tests RED before the fix and GREEN after, rollback
+  restores a sabotaged sandbox, dashboard artifacts written).
+- Honest note: the fix step runs through a working offline patch-fix slot that
+  proves the modify-file/verify/rollback loop; the LLM call is a labeled one-
+  method seam (LLMFixer._generate_patch) to wire the client's model into.
+- Deliverable: PoC.py + BID.md.
 
 ## website-phone-scraper  (INR 12,500-37,500, 0 bids, posted ~2026-10-12)
 Crawl a target site, follow internal links + pagination, extract every phone
