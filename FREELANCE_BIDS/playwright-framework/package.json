@@ -1,0 +1,19 @@
+{
+  "name": "playwright-automation-framework",
+  "version": "1.0.0",
+  "description": "Robust, scalable UI + API automation framework. Playwright + TypeScript, Page Object Model + fixture-based data.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "lint": "tsc --noEmit",
+    "clean": "node -e \"require('fs').rmSync('test-results',{recursive:true,force:true});require('fs').rmSync('playwright-report',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@types/node": "^20.19.43",
+    "typescript": "^5.4.5"
+  }
+}

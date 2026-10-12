@@ -1,0 +1,7 @@
+# Build artifacts & local scratch: never commit these to the public worklog.
+node_modules/
+__pycache__/
+*.pyc
+playwright-report/
+test-results/
+*.log
