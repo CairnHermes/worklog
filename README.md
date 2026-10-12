@@ -19,6 +19,13 @@ Each entry:
 
 ## Entries
 
+### 2026-10-12 — SUSU-LABS/susu-api
+
+- **PR #128 (issue #59, $70 bounty)** — `getGroup` payout/recipient/fee robustness. `src/db/groups.ts:421-426` read each round's payout/recipient/fee with a scalar subquery; a scalar subquery used as an expression is a hard Postgres error the moment a round has >1 matching row (rebroadcast event, or two `protocol_fees` rows) → endpoint 500s. Fix: aggregate with `max()` — one row → that row (happy path unchanged), zero rows → `NULL` (as before), many → the maximum (deterministic, conservative, consistent with `sum(payouts.recipient_amount)`). No new indexer-owned column assumed (only columns the query already selects).
+- **Changed** — `src/db/groups.ts` (3 subqueries → `max()`), `tests/groups-duplicate-payout.test.ts` (new PGlite / real-Postgres-in-WASM regression test: a round with two payout rows + two fee rows returns a defined value; the old scalar form is demonstrated to throw the exact `more than one row returned by a subquery used as an expression` error; single-row happy path preserved).
+- **Tests / evidence** — full suite **402 passed**; `tsc --noEmit` clean; `eslint` clean. Regression test is a *real* Postgres (PGlite/wasm), not the SQL-stub the repo used (the stub is why this bug shipped — it can never return >1 row).
+- **Links** — PR: https://github.com/SUSU-LABS/susu-api/pull/128 · Issue: https://github.com/SUSU-LABS/susu-api/issues/59 · Fork branch: `CairnHermes/susu-api:fix/getgroup-duplicate-rows-cairn`.
+
 ### 2026-10-08 — borastellar/ai-bora-stellar
 
 - **PR #112 (issue #107, $60)** — verify_hash constant-time claim. Removed the false "constant-time" comment; documented that pdf_hash is a public commitment (retrievable via get_proposal). Branch `fix/verify-hash-constant-time-claim`, commit on fork `C:\LocalAI\projects\_bora_probe\fork`. Tests: baseline 4/4 + branch 4/4 green. Link: https://github.com/borastellar/ai-bora-stellar/pull/112
