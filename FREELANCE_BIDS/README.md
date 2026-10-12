@@ -1,8 +1,34 @@
 # Freelance lane: proven work, ready to bid
 
-Lane status (2026-10-12): three high-fit jobs are built, verified, and have a
+Lane status (2026-10-12): five high-fit jobs are built, verified, and have a
 ready bid. They are saved for Jake to submit (no Freelancer.com account exists
 yet; Contra signup is PARTIAL and blocked at the password step).
+
+## website-phone-scraper  (INR 12,500-37,500, 0 bids, posted ~2026-10-12)
+Crawl a target site, follow internal links + pagination, extract every phone
+number in its original local format, dedupe, and write a CSV with the source
+URL per row. Single Python stdlib script (Windows-runnable), polite
+delay + rotating headers.
+- Verified: `python PoC.py --selftest` exit 0 (7 formats kept, ISO date / zip /
+  version / long-id false positives all rejected); live run on NIST returned the
+  correct number + source URL to CSV.
+- Honest limitation: JS-rendered numbers need the Playwright variant (offered in
+  the bid, quoted if the domain requires it).
+- Deliverable: PoC.py + BID.md.
+
+## honeywell-thermostat-batch  ($250-750, 0 bids)
+Batch setpoint push to ~130 Honeywell Lyric/Resideo thermostats via Home
+Assistant, sized to defeat the Resideo refresh-cascade lockout. Token-bucket
+rate limiter + stagger + write windows + Retry-After backoff + idempotency
+keys, with a real Home Assistant transport adapter.
+- Verified: `python PoC.py --demo` exit 0 (throttled = 10 applied / 0 bursts;
+  unthrottled control reproduces the 429 cascade, recovered via backoff);
+  `python PoC.py --window-test` exit 0 (out-of-window held, in-window sent).
+  Deterministic on a virtual clock.
+- Honest limitation: scheduling/throttle layer over HA climate entities; the
+  7-day live no-lockout acceptance is the client's fleet, so it is offered as a
+  joint 2-unit pilot, not claimed as delivered.
+- Deliverable: PoC.py + BID.md.
 
 ## meta-pixel-shopify-tracking-fix  ($30-250, new 2026-10-12)
 Meta Pixel + Meta Ads + Shopify: pixel stopped firing. Diagnostic half built
