@@ -1,0 +1,55 @@
+{
+ "asof": "2026-10-12T05:57:00.205231+00:00",
+ "store": "https://shops-22.myshopify.com",
+ "pages": [
+  {
+   "url": "https://shops-22.myshopify.com/",
+   "http_status": 200,
+   "fetched_note": "",
+   "looks_blocked": false,
+   "checks": [
+    {
+     "check": "PIXEL_PRESENCE",
+     "status": "MISSING",
+     "detail": "no pixel bootstrap in served HTML. Fix: install via Meta's Facebook Channel app on Shopify (Settings > Channels > Meta), or GTM if the store already uses it."
+    },
+    {
+     "check": "PIXEL_INIT",
+     "status": "MISSING",
+     "detail": "no fbq('init') call visible"
+    },
+    {
+     "check": "EVENT_VIEWCONTENT",
+     "status": "MISSING",
+     "detail": "missing ViewContent: add pageview/ViewContent in Meta channel app or a pageview tag in GTM (Shopify metafields or theme snippet)."
+    },
+    {
+     "check": "EVENT_ADDTOCART",
+     "status": "MISSING",
+     "detail": "missing AddToCart: Shopify Meta channel fires this from cart actions; if absent, add fbq track on cart-add event in theme."
+    },
+    {
+     "check": "EVENT_CHECKOUT",
+     "status": "MISSING",
+     "detail": "missing InitiateCheckout: Shopify Meta channel covers it on checkout step one; otherwise track on order start."
+    },
+    {
+     "check": "EVENT_PURCHASE",
+     "status": "MISSING",
+     "detail": "missing Purchase: this is the event Meta optimises spend on. Enable the Meta (Facebook) channel app so Shopify posts Purchase via Conversion API on completed orders."
+    },
+    {
+     "check": "EVENT_DEDUP",
+     "status": "UNDETERMINED",
+     "detail": "no pixel in the served HTML, so dedup cannot be assessed"
+    },
+    {
+     "check": "DELIVERY_PATH",
+     "status": "MISSING",
+     "detail": "no pixel delivery path found in served HTML (neither GTM nor direct)"
+    }
+   ]
+  }
+ ],
+ "engine": "meta-pixel-audit/1.0"
+}

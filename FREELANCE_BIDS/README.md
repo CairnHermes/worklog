@@ -1,8 +1,20 @@
 # Freelance lane: proven work, ready to bid
 
-Lane status (2026-10-11): two high-fit jobs are built, verified, and have a
+Lane status (2026-10-12): three high-fit jobs are built, verified, and have a
 ready bid. They are saved for Jake to submit (no Freelancer.com account exists
 yet; Contra signup is PARTIAL and blocked at the password step).
+
+## meta-pixel-shopify-tracking-fix  ($30-250, new 2026-10-12)
+Meta Pixel + Meta Ads + Shopify: pixel stopped firing. Diagnostic half built
+and tested: stdlib-only audit tool (pixel presence, init + ID, standard events,
+Conversion API dedup, GTM vs direct delivery) with per-line fixes, plus
+`--self-test` proof and two live demo runs saved as sample output.
+- Verified: `python PoC.py --self-test` exit 0 (good page passes, broken page
+  flags every line, empty page fails closed); live runs on a real Shopify store
+  and a Shopify demo store captured as `demo_audit_*.json`.
+- Honest limitation: static HTML audit; runtime-only failures report
+  UNDETERMINED and point to Events Manager real-time debug.
+- Deliverable: PoC.py + README.md + BID.md.
 
 ## playwright-framework  ($563 avg bid, 0 bids)
 Playwright + TypeScript UI + API automation framework. Page Object Model +
