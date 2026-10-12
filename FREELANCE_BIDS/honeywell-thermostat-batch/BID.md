@@ -1,7 +1,5 @@
 # Bid: Honeywell Lyric / Resideo Batch Setpoint Push
 
-**Role:** freelancer, first person. Short, human, no AI mention, no em-dashes.
-
 Hi,
 
 I have read your brief twice because the Resideo refresh-cascade lockout is a

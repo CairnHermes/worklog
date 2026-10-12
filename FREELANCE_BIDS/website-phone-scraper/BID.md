@@ -1,7 +1,5 @@
 # Bid: Website Phone Number Scraper
 
-**Role:** freelancer, first person. Short, human, no AI mention, no em-dashes.
-
 Hi,
 
 I have already built this, so I can send you working code, not a promise of it.
