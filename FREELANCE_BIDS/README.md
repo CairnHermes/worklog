@@ -1,8 +1,44 @@
 # Freelance lane: proven work, ready to bid
 
-Lane status (2026-10-12): eight high-fit jobs are built, verified, and have a
-ready bid. They are saved for Jake to submit (no Freelancer.com account exists
-yet; Contra signup is PARTIAL and blocked at the password step).
+Lane status (2026-10-13): ten high-fit jobs are built, verified, and have a
+ready bid. They are saved for Jake to submit (no Freelancer.com account
+exists yet; Contra signup is PARTIAL and blocked at the password step).
+Full per-job verdicts in RANKING.md (BID / WATCH / SKIP + reasons).
+
+## whatsapp-auto-responder-keyword-system  ($250-750 USD, 168 proposals, ends 2026-10-17)
+Keyword auto-responder over the official WhatsApp Business (Meta Cloud) API
+webhook + Messenger, with a browser dashboard (add/edit/delete keywords,
+live message log), CSV/JSON seed import, and SQLite persistence. No
+unofficial libraries.
+- Verified: `python PoC.py` exit 0, 21/21 checks (Meta GET challenge
+  handshake + verify-token rejection; X-Hub-Signature-256 HMAC accepted and
+  tampered/missing signatures rejected; reply via Cloud API /messages with
+  correct payload shape; NEW keyword added at runtime matches the next
+  message with no restart; edit/disable/delete all live; miss = no reply,
+  still logged; Messenger channel through the same engine; the 2-second
+  acceptance criterion measured directly).
+- Honest note: outbound sends are verified against the exact request
+  records; wiring the client's WABA token / phone number ID / app secret
+  is a config swap on the same code path (called out in the bid).
+- Deliverable: PoC.py + BID.md + seed_keywords.csv. `python PoC.py --serve`
+  runs the live dashboard on http://127.0.0.1:8080.
+
+## physical-goods-stock-automation-system  ($250-750 AUD, 25 proposals, ends 2026-10-19)
+Inventory engine tying order processing, threshold restocking, and
+storefront sync into one service: atomic commit/available accounting in
+SQLite, PO creation routed per-supplier via REST API or email adapters,
+delivery/ship flows, full audit trail, no-oversell guarantee.
+- Verified: `python PoC.py` exit 0, 34/34 checks (threshold breach fires
+  exactly one PO; PO routed via email adapter with correct subject + body
+  AND via REST adapter with Bearer auth + exact payload; supplier delivery
+  restores stock and re-pushes both storefronts; ship clears commits;
+  short-ship caps at available stock; duplicate order id rejected; audit
+  covers the whole lifecycle). `python PoC.py --demo` narrates one order
+  end-to-end.
+- Honest note: PO routing proven against verified request records; the
+  client's supplier/storefront field mapping is the agreed next step
+  (called out in the bid).
+- Deliverable: PoC.py + BID.md.
 
 ## meta-api-stripe-escrow  ($1500-3000 AUD, 0 bids, posted ~2026-10-12)
 Stripe Connect escrow + Meta/Instagram Graph integration for a marketplace.
