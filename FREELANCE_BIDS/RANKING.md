@@ -6,6 +6,16 @@ for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
 ## READY this run (2026-10-13, new)
+- **BID** Junior Python LLM Bot Developer ($72 avg, 0 bids) -- squarely in
+  lane (Python, automation, online + offline model routing). Built and ran
+  the core: one LLMProvider interface, online (chat-completions wire
+  format, key from env) + offline (deterministic intent engine), a 5-intent
+  task router, guardrails (length cap, blocked-topic refusal, confidence,
+  trace id), and a 24-check selftest that verifies the online wire format
+  against an in-process mock. Found and fixed one real routing bug (ship vs
+  shipping) during selftest. All 24 pass, exit 0. Budget is junior-level so
+  the bid scopes to 5-10 tasks + a paid 1-day de-risk rather than inflating.
+  READY.
 - **BID** Physical Goods Stock Automation System ($250-750 AUD, 25 proposals,
   ends in 6 days) -- clear 3-workflow scope, mainstream stack, both routing
   paths (API + email) already proven in PoC (34/34 checks). READY.
