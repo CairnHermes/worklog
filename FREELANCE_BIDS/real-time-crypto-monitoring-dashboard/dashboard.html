@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PumpFun Suspicious-Activity Monitor</title>
+<style>
+  :root{--bg:#0d1117;--card:#161b22;--line:#21262d;--fg:#e6edf3;--dim:#8b949e;
+        --susp:#ff5d5d;--watch:#f5b942;--org:#3fb950}
+  *{box-sizing:border-box}body{margin:0;font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+  header{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  h1{font-size:17px;margin:0}
+  .meta{color:var(--dim);font-size:12px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  th.num{text-align:right}
+  tr.susp{background:rgba(255,93,93,.07)}tr.watch{background:rgba(245,185,66,.05)}
+  .tag{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+  .tag.susp{background:var(--susp);color:#111}.tag.watch{background:var(--watch);color:#111}.tag.org{background:var(--org);color:#111}
+  .fresh{color:var(--susp);font-weight:700}
+  details{cursor:pointer;color:var(--dim)}
+  details td{border-bottom:none}
+  .trades{padding:6px 12px 12px 24px;color:var(--dim);font-size:12px}
+  .trades div{padding:2px 0}
+  .trades b{color:var(--fg)}
+  footer{padding:12px 20px;color:var(--dim);font-size:11px;border-top:1px solid var(--line);margin-top:8px}
+  code{background:#21262d;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>PumpFun suspicious-activity monitor</h1>
+    <div class="meta">Volume spike driven by many freshly-funded wallets buying small amounts = <b style="color:var(--susp)">bot-ish</b>.
+      Ranked by suspicion score.</div>
+  </div>
+  <div class="meta" id="asof">loading…</div>
+</header>
+<table>
+  <thead>
+    <tr>
+      <th>Token</th><th class="num">MCap (USD)</th><th class="num">Buys (window)</th>
+      <th class="num">Buy vol (SOL)</th><th class="num">Fresh-buy share</th>
+      <th class="num">Small-buy share</th><th class="num">Score</th><th>Verdict</th>
+    </tr>
+  </thead>
+  <tbody id="rows"></tbody>
+</table>
+<footer>
+  Data: <code>frontend-api-v3.pump.fun/coins</code> (token list) + Solana mainnet RPC
+  (real swap transactions off each bonding curve: wallet, SOL size, pre-trade balance).
+  "Fresh" = buyer SOL balance below 0.5 before the trade (proxy for newly-funded wallet; tighten with wallet-age lookups).
+  Snapshot refreshed by <code>PoC.py --loop</code> every few seconds; table auto-reloads.
+</footer>
+<script>
+async function load(){
+  try{
+    const r=await fetch('snapshot.json',{cache:'no-store'});
+    const d=await r.json();
+    document.getElementById('asof').textContent='last tick '+new Date().toLocaleTimeString();
+    const tb=document.getElementById('rows');tb.innerHTML='';
+    d.forEach(t=>{
+      const cls=t.verdict.startsWith('SUSPICIOUS')?'susp':(t.verdict.startsWith('WATCH')?'watch':'');
+      const tag=cls?'tag '+cls:'tag org';
+      const tr=document.createElement('tr');if(cls)tr.className=cls;
+      const trades=(t.trades||[]).map(x=>{
+        const f=x.likely_fresh_wallet?' <b class="fresh">[fresh wallet?]</b>':'';
+        return `<div>${new Date(x.time*1000).toISOString().slice(11,19)} &nbsp; ${x.side} &nbsp; <b>${x.sol} SOL</b> &nbsp; ${x.wallet.slice(0,6)}…${x.wallet.slice(-4)} &nbsp; pre $${x.actor_sol_balance_pre}${f}</div>`;
+      }).join('')||'<div>no swaps in window</div>';
+      tr.innerHTML=`
+        <td><b>${t.symbol}</b> <span style="color:var(--dim)">${t.name}</span></td>
+        <td class="num">$${Math.round(t.mcap_usd).toLocaleString()}</td>
+        <td class="num">${t.n_buys}</td>
+        <td class="num">${t.buy_volume_sol}</td>
+        <td class="num ${t.fresh_buy_share>0.4?'fresh':''}">${Math.round(t.fresh_buy_share*100)}%</td>
+        <td class="num">${Math.round(t.small_buy_share*100)}%</td>
+        <td class="num">${t.suspicion_score}${t.sudden_spike?' ⚡':''}</td>
+        <td><span class="${tag}">${t.verdict}</span></td>`;
+      tb.appendChild(tr);
+      const dd=document.createElement('tr');
+      dd.innerHTML=`<td colspan="8"><details><summary>last trades (on-chain)</summary><div class="trades">${trades}</div></details></td>`;
+      tb.appendChild(dd);
+    });
+  }catch(e){
+    document.getElementById('asof').textContent='no snapshot yet — run: python PoC.py --loop 5';
+  }
+}
+load();setInterval(load,5000);
+</script>
+</body>
+</html>

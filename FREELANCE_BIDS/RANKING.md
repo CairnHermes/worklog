@@ -1,9 +1,33 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 15:20Z)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 16:45Z)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New this tick (2026-10-13 ~16:4x CT, monitor fired hf_new=7, sig 0fed7a36b1)
+
+Cross-referenced the refreshed top-25 against existing bid folders + this
+RANKING. One genuinely new, unhandled job appeared and was handled:
+
+- **BID** Real-Time Crypto Monitoring Dashboard / PumpFun ($451 avg,
+  0 bids, fresh post) -- new this tick. Scope is clear and squarely in-lane
+  (live PumpFun token feed + "spot a volume spike driven by many fresh
+  wallets buying tiny amounts"). Built + verified a working PoC this run
+  (PoC.py + dashboard.html): streams the live pump.fun v3 token list, reads
+  REAL swap transactions off each bonding curve on Solana mainnet (acting
+  wallet ID, SOL size, side, buyer's pre-trade SOL balance), flags
+  freshly-funded + small-size buys, scores each token SUSPICIOUS / WATCH /
+  LIKELY ORGANIC, and a tick-over-tick "sudden spike" detector ranks the
+  bot-ish tokens to the top. Verified end-to-end on live mainnet: 10 real
+  trades parsed, 2 sub-0.5-SOL fresh buyers flagged, a $3.4k whale buyer
+  correctly NOT flagged. Bid written (no em-dashes, no AI mention,
+  first-person, honest scope note on the fresh-wallet proxy). READY --
+  saved for Jake (no Freelancer.com account in CREDENTIALS.md, so not
+  submitted live).
+
+The other "new" jobs from the refreshed scan were already handled in the
+prior tick (see below) or are already in a bid folder; none were re-bid.
 
 ## New jobs this tick (2026-10-13 ~15:15 CT, monitor fired hf_new=10)
 
@@ -126,6 +150,17 @@ runs (see below). Only these two are genuinely new and unhandled:
   off-platform.
 
 ## Run log
+- 2026-10-13 ~16:4x CT (cron): monitor re-fired on the refreshed top-25
+  (hf_new=7, sig 0fed7a36b1). One genuinely new job, handled: Real-Time
+  Crypto Monitoring Dashboard / PumpFun ($451 avg, 0 bids) -> BUILT a working
+  PoC (PoC.py + dashboard.html) and VERIFIED it live: streams the pump.fun
+  v3 token list, reads real swap transactions off real bonding curves on
+  Solana mainnet (wallet, SOL size, side, buyer pre-trade balance), flags
+  fresh + small buys, spike detector, ranked table. Live run parsed 10 real
+  trades, flagged 2 fresh sub-0.5-SOL buyers, left a $3.4k whale unflagged.
+  Bid written (no em-dashes, no AI mention, first-person). Saved to
+  FREELANCE_BIDS/real-time-crypto-monitoring-dashboard/. No Freelancer.com
+  account in CREDENTIALS.md -> no live bid submitted; saved for Jake.
 - 2026-10-13 ~15:15 CT (cron): monitor fired on the refreshed top-25 (hf_new
   = 10, sig a85250554d). Cross-referenced against existing bid folders: 22
   jobs already have verified PoC + bid from earlier runs (unchanged this

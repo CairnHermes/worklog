@@ -1,0 +1,202 @@
+[
+ {
+  "name": "ket",
+  "symbol": "ket",
+  "mint": "2nGyKc7SwAY7FfP1jvBr1DNNCwEzT16Vcu74cDFYpump",
+  "created": 1791909626000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 13493.687511310398,
+  "curve": "5d6LzNMiX1TiQFh22UzCUpQgYKp93o6UdGW1t7v49NWa",
+  "trades": [
+   {
+    "sig": "4Ba8wXGCSYYToJ14...",
+    "time": 1791909687,
+    "wallet": "HFPvGzt45KMMrnPgSyUBf8EkfeJoUZG712YCnpXG9ehV",
+    "sol": 0.0304,
+    "side": "sell",
+    "actor_sol_balance_pre": 0.071245,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "3bmhWKXVHY2nKzqt...",
+    "time": 1791909687,
+    "wallet": "F7KEHWkvFYS7X8AFfKNhgq3b5bBN9rL3BWB68Xc7qi2t",
+    "sol": 0.0037,
+    "side": "sell",
+    "actor_sol_balance_pre": 2.694684,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "5Q7fj929ULhGibav...",
+    "time": 1791909687,
+    "wallet": "4Huq2118vNqZvL1Hm3t5K8AyVttzvTUzeGLgWf2YukPg",
+    "sol": 0.0186,
+    "side": "sell",
+    "actor_sol_balance_pre": 0.265496,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "4oooaBpvGpXWBJiS...",
+    "time": 1791909686,
+    "wallet": "44jUMecFV4TS4QiqyQ5gC8tyveaii3GqgnK1xEsdU82Q",
+    "sol": 0.2691,
+    "side": "buy",
+    "actor_sol_balance_pre": 0.35623,
+    "likely_fresh_wallet": true
+   }
+  ],
+  "n_buys": 1,
+  "n_fresh_buys": 1,
+  "buy_volume_sol": 0.269,
+  "fresh_buy_share": 1.0,
+  "small_buy_share": 1.0,
+  "sudden_spike": false,
+  "suspicion_score": 85.0,
+  "verdict": "WATCH (fresh-heavy)"
+ },
+ {
+  "name": "Recursive Self Inu",
+  "symbol": "RSI",
+  "mint": "DYGVA5qwt9fHbJb6Ve4Vsn1F3BhKPP99GcPRP7ZKpump",
+  "created": 1791891951000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 41253.77986891058,
+  "curve": "8RF7K1scxiLA3x8XL14eGMoWLwkHUmHKmxWZjbZBNUod",
+  "trades": [
+   {
+    "sig": "4mhwGmTVuVPFW3Mj...",
+    "time": 1791909685,
+    "wallet": "4daASjyAg7JgsFEkoBAgQBwyQwEEVijyHc6Z7BHUaA5R",
+    "sol": 0.205,
+    "side": "sell",
+    "actor_sol_balance_pre": 1.428852,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "SEmvNxUprTxbBPXP...",
+    "time": 1791909683,
+    "wallet": "4daASjyAg7JgsFEkoBAgQBwyQwEEVijyHc6Z7BHUaA5R",
+    "sol": 0.2166,
+    "side": "sell",
+    "actor_sol_balance_pre": 1.226497,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "3TxGN1S7prPw845J...",
+    "time": 1791909682,
+    "wallet": "4daASjyAg7JgsFEkoBAgQBwyQwEEVijyHc6Z7BHUaA5R",
+    "sol": 0.2289,
+    "side": "sell",
+    "actor_sol_balance_pre": 1.012017,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "5cBMNwGdh1YxC62J...",
+    "time": 1791909682,
+    "wallet": "AgmLJBMDCqWynYnQiPCuj9ewsNNsBJXyzoUhD9LJzN51",
+    "sol": 0.1859,
+    "side": "buy",
+    "actor_sol_balance_pre": 3474.566619,
+    "likely_fresh_wallet": false
+   },
+   {
+    "sig": "678wN9Bh6ZTD1NNw...",
+    "time": 1791909682,
+    "wallet": "8YcXhBgVdVmDM4RGvtUJPqmRutQ2JXdNDMXirE1WpLgx",
+    "sol": 0.091,
+    "side": "buy",
+    "actor_sol_balance_pre": 0.193752,
+    "likely_fresh_wallet": true
+   },
+   {
+    "sig": "3gUiZP8BoGJ5PYDn...",
+    "time": 1791909681,
+    "wallet": "4daASjyAg7JgsFEkoBAgQBwyQwEEVijyHc6Z7BHUaA5R",
+    "sol": 0.2407,
+    "side": "sell",
+    "actor_sol_balance_pre": 0.78583,
+    "likely_fresh_wallet": false
+   }
+  ],
+  "n_buys": 2,
+  "n_fresh_buys": 1,
+  "buy_volume_sol": 0.277,
+  "fresh_buy_share": 0.5,
+  "small_buy_share": 1.0,
+  "sudden_spike": false,
+  "suspicion_score": 57.5,
+  "verdict": "WATCH (fresh-heavy)"
+ },
+ {
+  "name": "ket",
+  "symbol": "ket",
+  "mint": "77koghbr34qp9p2qsXnTMtpaUjLJ26ENhdPqknSbpump",
+  "created": 1791909588000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 11005.078451298097,
+  "curve": "8CjwHjqhsfJesPK8t1XhyTVUftaP86rQH634VUqvQwWk",
+  "trades": [],
+  "n_buys": 0,
+  "n_fresh_buys": 0,
+  "buy_volume_sol": 0,
+  "fresh_buy_share": 0.0,
+  "small_buy_share": 0.0,
+  "sudden_spike": false,
+  "suspicion_score": 0.0,
+  "verdict": "LIKELY ORGANIC"
+ },
+ {
+  "name": "Runner",
+  "symbol": "RUNNER",
+  "mint": "4tTLGKgNTEaVKBm7YLdQDXzvF4GcwrNNqVR7Cryspump",
+  "created": 1791909235000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 5529.884741884606,
+  "curve": "SvkZxewZfggzgXP8cgw8XgbpxCHo7qKmAit15aCLDsi",
+  "trades": [],
+  "n_buys": 0,
+  "n_fresh_buys": 0,
+  "buy_volume_sol": 0,
+  "fresh_buy_share": 0.0,
+  "small_buy_share": 0.0,
+  "sudden_spike": false,
+  "suspicion_score": 0.0,
+  "verdict": "LIKELY ORGANIC"
+ },
+ {
+  "name": "Insidercoin",
+  "symbol": "INSIDER",
+  "mint": "9PfyZJQqX1iwyr16VQ5nkDQ2JHajFdrL83LG2F5gpump",
+  "created": 1791909243000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 37067.966856783125,
+  "curve": "2kHXUrV74f23xkcBMsTWojvSb7Xg2S1wX2hcxqf2bh4H",
+  "trades": [],
+  "n_buys": 0,
+  "n_fresh_buys": 0,
+  "buy_volume_sol": 0,
+  "fresh_buy_share": 0.0,
+  "small_buy_share": 0.0,
+  "sudden_spike": false,
+  "suspicion_score": 0.0,
+  "verdict": "LIKELY ORGANIC"
+ },
+ {
+  "name": "Pixelfun",
+  "symbol": "PIXELFUN",
+  "mint": "34tdNdckf3BCerNmJQU48q1THzoJSQXsHRbRP7Yppump",
+  "created": 1791909118000,
+  "last_trade": 1791909692000,
+  "mcap_usd": 14263.658359504943,
+  "curve": "Ddrv2JxeZNfTUJXNWKXJ5xauo5PHhRQGZhnHsrCvgruQ",
+  "trades": [],
+  "n_buys": 0,
+  "n_fresh_buys": 0,
+  "buy_volume_sol": 0,
+  "fresh_buy_share": 0.0,
+  "small_buy_share": 0.0,
+  "sudden_spike": false,
+  "suspicion_score": 0.0,
+  "verdict": "LIKELY ORGANIC"
+ }
+]
