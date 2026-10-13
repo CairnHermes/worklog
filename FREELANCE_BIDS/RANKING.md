@@ -1,9 +1,40 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 10:40Z)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 15:20Z)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New jobs this tick (2026-10-13 ~15:15 CT, monitor fired hf_new=10)
+
+Cross-referenced all 25 jobs in FREELANCE_JOBS.md against the existing bid
+folders and this RANKING. 22 already carry verified PoC + bid from prior
+runs (see below). Only these two are genuinely new and unhandled:
+
+- **WATCH** Python Dev and Digital Marketing for FXDashboard ($446 avg,
+  0 bids) -- new this tick. A 90-day engagement that pairs "Python
+  Developer" with "Digital Marketing Specialist" (Liquid Markets +
+  FXDashboard). The dev/optimization half is in-lane, but the marketing
+  half is not, and the description is truncated to "The project includes..."
+  with no enumerated deliverables or acceptance criteria to build against.
+  This is a multi-week scoping conversation, not a one-week gig. If it
+  re-appears with a concrete, dev-only scope and a per-task budget, it
+  becomes BID-able. Not bid this run (no verifiable PoC possible against
+  an unstated scope).
+- **WATCH** Property24 Agent Data Scraping ($214 avg, 0 bids) -- new this
+  tick. Scope is clear and in-lane (scrape every estate agent's mobile +
+  name + agency to a clean CSV), but I could not build a real, verified
+  PoC from this environment, so I am not claiming one: (a) the likely
+  target property24.ie (Ireland, the Property24 flagship) does not
+  resolve from this box -- DNS `getaddrinfo failed`, confirmed on both the
+  site and api.property24.ie; (b) the reachable Property24 variants
+  (property24.com = South Africa, property24.com.au) are JavaScript SPAs
+  with zero tel:/phone markup in the server HTML, and the AU WordPress
+  REST API exposes no agent/broker/vendor post type -- agent+phone data is
+  client-rendered. That is the same Playwright wall I logged honestly on
+  Wayfair: a "working scraper" against a fake HTML fixture would not be the
+  real deliverable. If Jake can name the exact domain and wants the
+  Playwright/browser-rendered version, it becomes BID-able. Not bid.
 
 ## READY this run (2026-10-13 05:4x CT, 2 new jobs this tick)
 
@@ -95,6 +126,20 @@ Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
   off-platform.
 
 ## Run log
+- 2026-10-13 ~15:15 CT (cron): monitor fired on the refreshed top-25 (hf_new
+  = 10, sig a85250554d). Cross-referenced against existing bid folders: 22
+  jobs already have verified PoC + bid from earlier runs (unchanged this
+  tick). Two genuinely new jobs, both judged WATCH, neither bid:
+  (1) Python Dev + Digital Marketing for FXDashboard ($446) -- 90-day
+  dev+marketing engagement, truncated scope, no acceptance criteria to
+  build against; (2) Property24 Agent Data Scraping ($214) -- clear
+  in-lane scope, but not BID-able honestly from this box: property24.ie
+  does not resolve (DNS fail), the reachable .com/.com.au variants are JS
+  SPAs with no server-rendered phone markup and no agent endpoint in the
+  WordPress REST API, so agent+phone is client-rendered (same Playwright
+  wall as Wayfair). No fake-fixture PoC fabricated. Both added to RANKING
+  with verdicts + reasons. No Freelancer.com account in CREDENTIALS.md ->
+  no live bid submitted either way; saved for Jake.
 - 2026-10-13 05:4x CT (cron): monitor fired on 2 genuinely new high-fit
   jobs (sig 17d29b155e). New: (1) ChatGPT MCP & Crypto Trading API
   Integration Expert (score 13) -> BUILT + verified (30/30, live APIs) +
