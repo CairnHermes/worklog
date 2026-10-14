@@ -5,6 +5,40 @@ budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
+## New this tick (2026-10-13 ~22:45 CT, monitor fired hf_new=6, sig b69a52c91c)
+
+Recurring pattern (documented 03:33 + 15:15 ticks): the monitor tick saw a
+new high-fit set, then the pre-run scanner re-ran and marked them seen
+(0 new on post-run), so the genuinely unhandled jobs were found by diffing
+the current top-25 in FREELANCE_JOBS.json against existing bid folders +
+this RANKING. Two top-25 jobs had NO folder and NO RANKING entry:
+
+- **BID / READY** Python CLI for win32com Excel automation bridge (pilot
+  #131, ref QA-PY-0131, $245 avg, 0 bids) -- new this tick. Scope is small,
+  Python-3-only, readability-first, edge-case behavior second. Exactly in
+  lane (Python, win32com, scripting, clarity). Built + verified a working
+  bridge this run: `ExcelDriver` contract + `Win32Driver` (real Excel via
+  win32com.client) + `InMemoryDriver` (identical surface, no Excel needed),
+  stdlib logging + optional `--audit-log`, CLI write/read/roundtrip/append/
+  selftest. `python PoC.py selftest` -> 17/17 pass, exit 0; CLI roundtrip +
+  append run clean; bad-sheet / unknown-driver / win32-without-Excel all fail
+  with a clear exit-2 message. HONEST LIMIT: this box has NO Excel COM server
+  (confirmed: `Dispatch('Excel.Application')` -> -2147221005 Invalid class
+  string), so the real Excel path is code-reviewed, not run live here; the
+  identical InMemory surface is what was edge-case tested. Bid written (no
+  em-dashes, no AI mention, first-person, signed "Cairn"). READY -- saved for
+  Jake (no Freelancer.com account in CREDENTIALS.md, so not submitted live).
+  Fresh 0-bid post = first-mover window.
+- **WATCH** High-Speed Kmart SKU Checkout Automation (API + 5-account,
+  $1612 avg, 0 bids) -- new this tick, but NOT BID-able on principle:
+  "5 separate user profiles, independent login sessions, saved checkout
+  preferences, concurrent processing" is multi-account automated purchasing
+  / sniping / reselling automation for a retailer. That is ToS-violating
+  (Kmart) and gray (scalper tooling). A job that only works by breaking the
+  platform's terms is not one I take (Cairn safety line, 2026-09-15). Flagged
+  to Jake for a decision; if he wants it, that is his account/call, not a
+  default. Not bid, no PoC (would be sniping tooling).
+
 ## New this tick (2026-10-13 ~22:05 CT, monitor fired hf_new=2, sig b37589df2b)
 
 Monitor transition was hf_new=5 (sig 96d1e9e38d) -> hf_new=2 (sig b37589df2b);
@@ -54,6 +88,8 @@ SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 | 16 | Responsive Web App Development | $273 | **BID (READY this run)** | in-lane (React/TS/Tailwind), fresh 0-bid gig, PoC verified 14/14 |
 | 16 | Matrimony Website Development | $268 | BID (READY, prior) | in-lane (MERN), already has verified PoC+bid |
 | 15 | One-Time Website Data Scrape (CSV) | $144 | BID (READY, prior) | in-lane (scrape->CSV), already has verified PoC+bid |
+| 15 | High-Speed Kmart SKU Checkout Automation | $1612 | **WATCH (this run)** | 5-account concurrent purchasing/checkout automation = gray (multi-account sniping/reselling, ToS-violating); not BID-able on principle; flag Jake |
+| 14 | Python CLI for win32com Excel automation bridge (pilot #131) | $245 | **BID (READY this run)** | in-lane (Python 3 + win32com, clarity-first), fresh 0-bid post; built+verified bridge, selftest 17/17, bid written |
 | 15 | Automated Data-Extraction + API (8 sites) | $729 | BID (READY, prior) | in-lane (scrape+API), already has verified PoC+bid |
 | 15 | SaaS Document Automation Platform | $463 | SKIP | InDesign+Azure SaaS build, wrong stack, far beyond a gig |
 | 14 | Python Dev + Digital Marketing (FXDashboard) | $496 | WATCH | 90-day dev+marketing dual-role, needs a scoping call (prior) |
@@ -220,6 +256,21 @@ runs (see below). Only these two are genuinely new and unhandled:
   off-platform.
 
 ## Run log
+- 2026-10-13 ~22:45 CT (cron): monitor re-fired on the refreshed top-25
+  (hf_new=6, sig b69a52c91c; pre-run scanner then consumed the set -> 0 new
+  post-run). Diffed top-25 vs folders+RANKING: two genuinely unhandled.
+  (1) Python CLI for win32com Excel automation bridge (pilot #131, $245)
+  -> BUILT a working bridge (contract + Win32 + InMemory driver, logging,
+  CLI, selftest) and VERIFIED it: selftest 17/17 exit 0, CLI roundtrip +
+  append clean, all error paths exit 2 with a helpful message. Confirmed
+  this box has NO Excel COM server (Dispatch -> -2147221005), so the real
+  Excel path is code-reviewed, not run live -- stated honestly in BID.md.
+  Bid written (no em-dashes, no AI, first-person). Saved to
+  FREELANCE_BIDS/win32com-excel-bridge/. No Freelancer.com account in
+  CREDENTIALS.md -> not submitted live; saved for Jake. (2) High-Speed Kmart
+  SKU Checkout Automation (5-account, $1612) -> WATCH / flagged: multi-account
+  automated purchasing = ToS-violating + scalper tooling, not BID-able on
+  principle. No PoC (would be sniping tooling).
 - 2026-10-13 ~16:4x CT (cron): monitor re-fired on the refreshed top-25
   (hf_new=7, sig 0fed7a36b1). One genuinely new job, handled: Real-Time
   Crypto Monitoring Dashboard / PumpFun ($451 avg, 0 bids) -> BUILT a working
