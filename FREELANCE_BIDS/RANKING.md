@@ -1,9 +1,43 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 22:05 CT)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~02:30 CT)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New this tick (2026-10-14 ~02:30 CT, monitor fired hf_new=1, sig 1079c0fe8f)
+
+Recurring pattern (documented on prior ticks): the monitor's "current" is the
+PRE-run scanner output captured at fire time, so it can differ from the
+post-run scan. The genuinely unhandled job was found by diffing the current
+top-25 in FREELANCE_JOBS.md against existing bid folders + this RANKING.
+24 of the 25 current jobs already have a folder/verdict from prior runs
+(19 READY, 4 WATCH, 2 SKIP); exactly ONE was genuinely new and unhandled,
+and it was also a RANKING defect found and fixed this run:
+
+- **BID / READY** WhatsApp & Messenger Reply Automation ($1,038 avg, 0 bids,
+  score 14) -- new this tick. DEFECT FIXED: this job was previously marked
+  "BID (READY, prior)" in the per-job table (old line 129) even though it had
+  NO folder, NO pipeline entry, NO PoC, and NO bid -- it had been conflated
+  with the *different* job "WhatsApp Auto-Responder Keyword System" (which
+  does have a folder). The false READY claim is corrected below and this job
+  was genuinely built + verified + bid this run. Scope is clear and squarely
+  in-lane (one service answering BOTH the official WhatsApp Business Cloud
+  API and the Facebook Messenger Graph API from a single keyword list). Built
+  + verified a working PoC this run: `python PoC.py selftest` -> 38/38 checks
+  passed, exit 0; `python PoC.py demo` (dict path) routes all three sample
+  messages correctly; LIVE HTTP on 127.0.0.1:8765 -> (1) WhatsApp keyword
+  reply 200 + dry-run send to /v18.0/1/messages, (2) bad signature -> HTTP
+  401, (3) hub-verify handshake -> 8888, (4) Messenger support reply 200 +
+  dry-run send to /v21.0/UID/messages. HONEST LIMIT: outbound send is
+  dry-run by default and code-reviewed against the real Graph endpoints (a
+  live send needs the client's own access token + phone number id, which I do
+  not have); I do not set up the client's Meta Business / WhatsApp Business
+  onboarding (flagged in the bid). Official channels only: no scraping, no
+  bot-wall evasion, no ToS-violating automation. Bid written (no em-dashes,
+  no AI mention, first-person, signed "Jake"). READY -- saved for Jake (no
+  Freelancer.com account in CREDENTIALS.md, so not submitted live). Fresh
+  0-bid post at a $1,038 avg = strong first-mover window.
 
 ## New this tick (2026-10-14 ~00:00 CT, monitor fired hf_new=5, sig 7b904739bd)
 
@@ -126,7 +160,7 @@ SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 | 15 | Automated Data-Extraction + API (8 sites) | $729 | BID (READY, prior) | in-lane (scrape+API), already has verified PoC+bid |
 | 15 | SaaS Document Automation Platform | $463 | SKIP | InDesign+Azure SaaS build, wrong stack, far beyond a gig |
 | 14 | Python Dev + Digital Marketing (FXDashboard) | $496 | WATCH | 90-day dev+marketing dual-role, needs a scoping call (prior) |
-| 14 | WhatsApp & Messenger Reply Automation | $1037 | BID (READY, prior) | in-lane (API), already has verified PoC+bid |
+| 14 | WhatsApp & Messenger Reply Automation | $1038 | **BID (READY this run)** | in-lane (both official Meta APIs); DEFECT FIXED (was falsely marked "READY, prior" with no folder/PoC/bid - conflated with the Keyword System job); built+verified single service, selftest 38/38 + live HTTP 4/4, bid written |
 | 14 | Website Phone Number Scraper | $211 | BID (READY, prior) | in-lane (scrape), already has verified PoC+bid |
 | 14 | Needoh Stock Watchlist Builder | $17 | BID (READY, prior) | in-lane (watchlist app), already has verified PoC+bid |
 | 14 | Physical Goods Stock Automation | $315 | BID (READY, prior) | in-lane (automation), already has verified PoC+bid |
@@ -290,6 +324,26 @@ runs (see below). Only these two are genuinely new and unhandled:
   off-platform.
 
 ## Run log
+- 2026-10-14 ~02:30 CT (cron): monitor re-fired (hf_new=1, sig 1079c0fe8f;
+  pre-run scanner then consumed the set -> 0 new post-run). Diffed current
+  top-25 vs folders+RANKING: 24 already have a folder/verdict (19 READY, 4
+  WATCH, 2 SKIP); one genuinely unhandled, which was also a RANKING DEFECT
+  found and fixed -> WhatsApp & Messenger Reply Automation ($1,038 avg, 0
+  bids). It had been falsely marked "BID (READY, prior)" with NO folder, NO
+  pipeline entry, NO PoC, NO bid (conflated with the different "WhatsApp
+  Auto-Responder Keyword System" job). BUILT a working single service (parse
+  both WhatsApp Cloud + Messenger Graph envelopes into one shape,
+  X-Hub-Signature-256 verify, keyword router with guaranteed fallback,
+  correct signed Graph payload per platform, stdlib HTTP receiver) and
+  VERIFIED it: selftest 38/38 exit 0; live HTTP 4/4 on 127.0.0.1:8765
+  (WhatsApp keyword reply 200 + dry-run send /v18.0, bad sig -> 401, hub
+  handshake -> 8888, Messenger support reply 200 + dry-run send /v21.0).
+  Honest limit: outbound send dry-run by default (needs client's own token);
+  official channels only, no scraping/ToS-violation. Bid written (no
+  em-dashes, no AI, first-person, signed Jake). Fixed the false READY row in
+  the per-job table. Saved to FREELANCE_BIDS/whatsapp-messenger-reply-automation/
+  (PoC.py, BID.md, VERIFY.md, RANKING.md). No Freelancer.com account in
+  CREDENTIALS.md -> not submitted live; saved for Jake.
 - 2026-10-14 ~00:00 CT (cron): monitor re-fired on the refreshed top-25
   (hf_new=5, sig 7b904739bd; pre-run scanner then consumed the set -> 0 new
   post-run). Diffed current top-25 vs folders+RANKING: 24 already READY, one
