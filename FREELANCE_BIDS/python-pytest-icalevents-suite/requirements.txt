@@ -1,0 +1,8 @@
+icalevents>=0.3,<0.4
+icalendar>=5
+pytest>=7
+# transitive (pulled by icalevents / icalendar, listed for clarity)
+python-dateutil
+pytz
+tzdata
+urllib3

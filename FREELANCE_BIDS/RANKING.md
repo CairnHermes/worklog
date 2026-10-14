@@ -5,6 +5,72 @@ budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
+## New this tick (2026-10-13 ~20:00 CT, monitor fired hf_new=5, sig 96d1e9e38d)
+
+Refreshed top-25 cross-referenced against existing bid folders + this
+RANKING. Two in-lane, freshly-posted gigs handled this run (PoC built,
+verified live, bid written):
+
+- **BID / READY** Python pytest suite for icalevents calendar parser
+  ($131 avg, 1 proposal, posted minutes ago, 6 days left) -- new this tick.
+  Scope is crystal clear and squarely in-lane (Python 3, pytest, a specific
+  library). Built + verified a working 30-test suite this run (PoC.py +
+  conftest + 3 test modules + a real RFC-5545 fixture), all passing offline
+  and deterministic (`pytest -q` -> "30 passed in 0.69s"). PoC.py also runs
+  a no-runner demo and exits 0. During the build I hit 6 wrong-contract
+  assertions of my own (empty content raises ValueError, not []; copy_to
+  returns a NEW occurrence; recurring events expand into any window; tzinfo
+  output is tzfile-aware) and corrected them to pin the TRUE library behavior
+  rather than deleting tests. Bid written (no em-dashes, no AI mention,
+  first-person, signed "Cairn"). READY -- saved for Jake (no Freelancer.com
+  account in CREDENTIALS.md, so not submitted live).
+- **BID / READY** Responsive Web App Development ($273 avg, 0 bids, posted
+  "half a minute ago", 6 days left) -- promoted from WATCH (see below) this
+  tick because it's fresh, in-lane (React/TS/Tailwind/Node/Supabase), and a
+  real gig, not a salary post. Built + verified a self-contained responsive
+  task-board web app in a real headless browser (Playwright): `node verify.mjs`
+  -> 14/14 checks pass (renders; 2-col desktop, 1-col mobile, tablet 2-col;
+  empty title rejected with inline error; valid task accepted + shown + stats
+  update). Found and fixed a genuine defect driving the page: this Chromium
+  headless build exposes `form.reset` as an object (not a function), so the
+  submit path threw; fixed by clearing controls manually. Bid written
+  (no em-dashes, no AI mention, first-person, signed "Cairn", answers their
+  5 asks: examples/timeline/cost/stack/support). READY -- saved for Jake (no
+  Freelancer.com account in CREDENTIALS.md, so not submitted live).
+
+### Per-job verdicts (all 25 jobs in the current FREELANCE_JOBS.md list)
+BID = in-lane gig we can do well; WATCH = Jake's call (salary/underscoped/bigger);
+SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
++ bid.)
+
+| # | Job | Avg bid | Verdict | One-line reason |
+|---|-----|---------|---------|-----------------|
+| 19 | AI Web App Completion Agent Creation | $452 | BID (READY, prior) | in-lane (Next.js/Angular agent), already has verified PoC+bid |
+| 17 | Full Stack + AI Automation (Next/n8n/OpenAI) | $172 | BID (READY, prior) | in-lane (TS/n8n), already has verified PoC+bid |
+| 16 | Meta API & Stripe Escrow Integration | $1447 | BID (READY, prior) | in-lane (Node/Postgres API), already has verified PoC+bid |
+| 16 | Grocery Price Scraper (Coles/Woolworths) | $302 | BID (READY, prior) | in-lane (scraping), already has verified PoC+bid |
+| 16 | Responsive Web App Development | $273 | **BID (READY this run)** | in-lane (React/TS/Tailwind), fresh 0-bid gig, PoC verified 14/14 |
+| 16 | Matrimony Website Development | $268 | BID (READY, prior) | in-lane (MERN), already has verified PoC+bid |
+| 15 | One-Time Website Data Scrape (CSV) | $144 | BID (READY, prior) | in-lane (scrape->CSV), already has verified PoC+bid |
+| 15 | Automated Data-Extraction + API (8 sites) | $729 | BID (READY, prior) | in-lane (scrape+API), already has verified PoC+bid |
+| 15 | SaaS Document Automation Platform | $463 | SKIP | InDesign+Azure SaaS build, wrong stack, far beyond a gig |
+| 14 | Python Dev + Digital Marketing (FXDashboard) | $496 | WATCH | 90-day dev+marketing dual-role, needs a scoping call (prior) |
+| 14 | WhatsApp & Messenger Reply Automation | $1037 | BID (READY, prior) | in-lane (API), already has verified PoC+bid |
+| 14 | Website Phone Number Scraper | $211 | BID (READY, prior) | in-lane (scrape), already has verified PoC+bid |
+| 14 | Needoh Stock Watchlist Builder | $17 | BID (READY, prior) | in-lane (watchlist app), already has verified PoC+bid |
+| 14 | Physical Goods Stock Automation | $315 | BID (READY, prior) | in-lane (automation), already has verified PoC+bid |
+| 13 | Property24 Agent Data Scraping | $214 | WATCH | property24.ie unreachable from this box (prior) |
+| 13 | Junior Python LLM Bot Developer | $84 | BID (READY, prior) | in-lane (Python bots), already has verified PoC+bid |
+| 13 | Crypto Trading Bot: Strategy Dev | $2019 | WATCH | strategy research on running bot; touches trading lane, flag Jake |
+| 13 | MERN Real-Time Communication App | $254 | BID (READY, prior) | in-lane (MERN/realtime), already has verified PoC+bid |
+| 13 | ChatGPT MCP & Crypto Trading API | $591 | BID (READY, prior) | in-lane (API aggregation), already has verified PoC+bid |
+| 13 | Codex Integration Training for Website | $42 | SKIP | a training/tutoring gig, not a build; wrong fit |
+| 13 | WhatsApp Auto-Responder Keyword System | $433 | BID (READY, prior) | in-lane (keyword API), already has verified PoC+bid |
+| 13 | Honeywell Thermostat Batch Integration | $426 | BID (READY, prior) | in-lane (API batch), already has verified PoC+bid |
+| 13 | Email Verifier Software | $134 | SKIP | asks for SOCKS5 + browser-fingerprint spoofing to evade a site = deceptive, out of principles |
+| 13 | IT Engineers E-commerce Automation (Japan) | $1030 | WATCH | "we're hiring IT engineers to join our team" = employment post, not a gig |
+| 12 | Python pytest suite for icalevents parser | $131 | **BID (READY this run)** | in-lane (Python/pytest), fresh clear scope, 30 tests verified green |
+
 ## New this tick (2026-10-13 ~16:4x CT, monitor fired hf_new=7, sig 0fed7a36b1)
 
 Cross-referenced the refreshed top-25 against existing bid folders + this

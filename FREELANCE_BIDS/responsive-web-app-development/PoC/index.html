@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TaskBoard — responsive demo</title>
+<meta name="description" content="A responsive, form-validated task board built with semantic HTML, modern CSS and vanilla TypeScript-style JS." />
+<style>
+  :root {
+    --bg: #0b1220; --panel: #121b2e; --ink: #e8eefc; --mut: #93a1bf;
+    --acc: #4f8cff; --ok: #33d69f; --err: #ff6b6b; --line: #22304d;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg); color: var(--ink); min-height: 100vh;
+  }
+  header {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 16px 20px; border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; background: rgba(11,18,32,.9); backdrop-filter: blur(6px);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 4px rgba(79,140,255,.18); }
+  nav { display: flex; gap: 4px; }
+  nav button {
+    background: transparent; border: 0; color: var(--mut); padding: 8px 12px;
+    border-radius: 8px; cursor: pointer; font: inherit;
+  }
+  nav button[aria-current="page"] { color: var(--ink); background: var(--panel); }
+  main {
+    display: grid; grid-template-columns: 1fr; gap: 18px;
+    padding: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  @media (min-width: 720px) {
+    main { grid-template-columns: 340px 1fr; align-items: start; }
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 18px;
+  }
+  h1 { font-size: 1.05rem; margin: 0 0 4px; }
+  .sub { color: var(--mut); font-size: .85rem; margin: 0 0 14px; }
+  label { display: block; font-size: .8rem; color: var(--mut); margin: 12px 0 4px; }
+  input, select {
+    width: 100%; padding: 10px 12px; border-radius: 10px; color: var(--ink);
+    background: #0e1730; border: 1px solid var(--line); font: inherit;
+  }
+  input:focus, select:focus { outline: 2px solid var(--acc); outline-offset: 1px; border-color: transparent; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hint { font-size: .75rem; color: var(--mut); margin-top: 4px; min-height: 1em; }
+  .hint.err { color: var(--err); }
+  .actions { display: flex; gap: 10px; margin-top: 16px; align-items: center; }
+  .btn {
+    border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; font: inherit; font-weight: 600;
+  }
+  .btn.primary { background: var(--acc); color: #04102a; }
+  .btn.ghost { background: transparent; color: var(--mut); border: 1px solid var(--line); }
+  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .task {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+    background: #0e1730; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+  }
+  .task .title { font-weight: 600; }
+  .task .meta { font-size: .75rem; color: var(--mut); }
+  .pill { font-size: .7rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mut); white-space: nowrap; }
+  .pill.high { color: var(--err); border-color: rgba(255,107,107,.4); }
+  .pill.med  { color: #ffb454; border-color: rgba(255,180,84,.4); }
+  .pill.low  { color: var(--ok); border-color: rgba(51,214,159,.4); }
+  .stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .stat { background: #0e1730; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .stat b { font-size: 1.3rem; display: block; }
+  .stat span { font-size: .72rem; color: var(--mut); }
+  .empty { color: var(--mut); text-align: center; padding: 30px 10px; }
+  footer { text-align: center; color: var(--mut); font-size: .75rem; padding: 20px; }
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 1fr; }
+    .actions { flex-wrap: wrap; }
+    header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> TaskBoard</div>
+  <nav aria-label="Sections">
+    <button aria-current="page">Board</button>
+    <button>Reports</button>
+    <button>Settings</button>
+  </nav>
+</header>
+<main>
+  <section class="card" aria-labelledby="add-h">
+    <h1 id="add-h">Add a task</h1>
+    <p class="sub">Client-side validation, no backend required.</p>
+    <form id="task-form" novalidate>
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" placeholder="e.g. Ship the landing page" autocomplete="off" />
+      <div class="hint" id="title-hint" aria-live="polite"></div>
+
+      <div class="row">
+        <div>
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option value="high">High</option>
+            <option value="med" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div>
+          <label for="due">Due date</label>
+          <input id="due" name="due" type="date" />
+        </div>
+      </div>
+      <div class="hint" id="due-hint" aria-live="polite"></div>
+
+      <label for="owner">Owner (optional)</label>
+      <input id="owner" name="owner" type="text" placeholder="Who's on it?" autocomplete="off" />
+
+      <div class="actions">
+        <button class="btn primary" type="submit">Add task</button>
+        <button class="btn ghost" type="reset" id="reset">Clear</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="board-h">
+    <h1 id="board-h">Board</h1>
+    <p class="sub" id="board-sub">Open tasks, most recent first.</p>
+    <div class="stats" id="stats"></div>
+    <ul class="list" id="list"></ul>
+    <div class="empty" id="empty" hidden>No tasks yet. Add one on the left.</div>
+  </section>
+</main>
+<footer>Responsive demo &middot; mobile / tablet / desktop &middot; no external dependencies</footer>
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const form = $("task-form");
+  const list = $("list");
+  const empty = $("empty");
+  const stats = $("stats");
+  const titleInput = $("title");
+  const dueInput = $("due");
+  const titleHint = $("title-hint");
+  const dueHint = $("due-hint");
+  const LABELS = { high: "High", med: "Medium", low: "Low" };
+
+  const seed = [
+    { title: "Fix checkout form validation", priority: "high", due: "2026-10-15", owner: "Mia" },
+    { title: "Write onboarding email copy", priority: "med", due: "2026-10-20", owner: "Leo" },
+    { title: "Update favicon + OG image", priority: "low", due: "", owner: "" },
+  ];
+  let tasks = seed.slice();
+
+  function setHint(el, msg, isErr) {
+    el.textContent = msg || "";
+    el.classList.toggle("err", !!isErr);
+  }
+
+  function validateTitle(v) {
+    const t = (v || "").trim();
+    if (!t) return { ok: false, msg: "Title is required." };
+    if (t.length < 3) return { ok: false, msg: "Use at least 3 characters." };
+    if (t.length > 80) return { ok: false, msg: "Keep it under 80 characters." };
+    return { ok: true, msg: "" };
+  }
+
+  function validateDue(v) {
+    if (!v) return { ok: true, msg: "" };
+    const d = new Date(v + "T00:00:00");
+    if (isNaN(d.getTime())) return { ok: false, msg: "Pick a valid date." };
+    return { ok: true, msg: "" };
+  }
+
+  function clearForm() {
+    // Manual reset: not every engine exposes form.reset() as a callable
+    // (one Chromium headless build surfaces it as an object). Clear each
+    // control directly so this works everywhere.
+    for (const el of form.elements) {
+      const tag = (el.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea") el.value = "";
+      else if (tag === "select") el.selectedIndex = 0;
+    }
+    setHint(titleHint, "", false);
+    setHint(dueHint, "", false);
+  }
+
+  function render() {
+    list.innerHTML = "";
+    const counts = { high: 0, med: 0, low: 0 };
+    for (const t of tasks) counts[t.priority] += 1;
+    stats.innerHTML =
+      '<div class="stat"><b>' + tasks.length + '</b><span>total</span></div>' +
+      '<div class="stat"><b>' + counts.high + '</b><span>high</span></div>' +
+      '<div class="stat"><b>' + counts.med + '</b><span>medium</span></div>' +
+      '<div class="stat"><b>' + counts.low + '</b><span>low</span></div>';
+    empty.hidden = tasks.length > 0;
+
+    for (const t of tasks) {
+      const li = document.createElement("li");
+      li.className = "task";
+      const title = document.createElement("div");
+      const h = document.createElement("div");
+      h.className = "title";
+      h.textContent = t.title;
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent = [t.owner && "Owner: " + t.owner, t.due && "Due " + t.due].filter(Boolean).join(" \u00b7 ") || "No owner, no due date";
+      title.appendChild(h); title.appendChild(meta);
+      const pill = document.createElement("span");
+      pill.className = "pill " + t.priority;
+      pill.textContent = LABELS[t.priority];
+      li.appendChild(title); li.appendChild(pill);
+      list.appendChild(li);
+    }
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const t = validateTitle(titleInput.value);
+    const d = validateDue(dueInput.value);
+    setHint(titleHint, t.msg, !t.ok);
+    setHint(dueHint, d.msg, !d.ok);
+    if (!t.ok || !d.ok) { (t.ok ? dueInput : titleInput).focus(); return; }
+    tasks.unshift({
+      title: titleInput.value.trim(),
+      priority: $("priority").value,
+      due: dueInput.value,
+      owner: $("owner").value.trim(),
+    });
+    clearForm();
+    titleInput.focus();
+    render();
+  });
+
+  form.addEventListener("input", function () {
+    if (titleHint.textContent) setHint(titleHint, "", false);
+    if (dueHint.textContent) setHint(dueHint, "", false);
+  });
+  form.addEventListener("reset", clearForm);
+
+  render();
+})();
+</script>
+</body>
+</html>
