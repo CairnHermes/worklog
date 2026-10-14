@@ -1,9 +1,33 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~02:30 CT)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~09:20 CT)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New this tick (2026-10-14 ~09:20 CT, monitor fired hf_new=13, sig b8ad37c9fc)
+
+Recurring pattern (documented on prior ticks): the monitor's "current" is the
+PRE-run scanner output captured at fire time, so it can differ from the
+post-run scan. The genuinely unhandled job was found by diffing the current
+top-25 in FREELANCE_JOBS.md against existing bid folders + this RANKING.
+24 of the 25 current jobs already have a folder/verdict from prior runs;
+exactly ONE was genuinely new and unhandled:
+
+- **BID / READY** Python 3 automation for Excel to Parquet conversion
+  ($215 avg, 0 bids, score 14) -- new this tick. Scope is clear and
+  squarely in-lane (Python 3, data processing, idiomatic + documented code,
+  minimal pinned deps, quick turnaround). Built + verified a working
+  converter this run: `python PoC.py selftest` -> all 17 checks passed,
+  exit 0 (ints/floats/booleans/dates/strings/nulls round-trip, empty-column
+  schema stays stable, header-only sheet keeps its 3 cols, missing-file +
+  wrong-extension raise clean errors); LIVE convert read back with pyarrow:
+  `placed: timestamp[us]`, `note: large_string`, ints stay int64, doubles
+  stay double. HONEST LIMIT: covers modern .xlsx/.xlsm (legacy .xls binary
+  would need xlrd) -- raised as a question in the bid, not assumed. Bid
+  written (no em-dashes, no AI, first-person, signed "Jake"). READY -- saved
+  for Jake (no Freelancer.com account in CREDENTIALS.md, so not submitted
+  live). Fresh 0-bid post = strong first-mover window.
 
 ## New this tick (2026-10-14 ~02:30 CT, monitor fired hf_new=1, sig 1079c0fe8f)
 

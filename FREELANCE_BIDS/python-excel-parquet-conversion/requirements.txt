@@ -1,0 +1,6 @@
+# Excel -> Parquet conversion (PoC)
+# Pinned to the tested majors: pandas 3.x, pyarrow 25.x, openpyxl 3.x.
+# openpyxl is the .xlsx reader/writer engine pandas uses under the hood.
+pandas>=3.0,<4.0
+pyarrow>=25,<26
+openpyxl>=3.1,<4.0
