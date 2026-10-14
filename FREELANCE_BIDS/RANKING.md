@@ -1,9 +1,56 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~09:20 CT)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~10:30 CT)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New this tick (2026-10-14 ~10:30 CT, monitor fired hf_new=5, sig aa191b4677)
+
+Same recurring pattern as prior ticks: the monitor's "current" is the PRE-run
+scanner output captured at fire time, so it can differ from the post-run scan.
+The genuinely unhandled jobs were found by diffing the current top-25 in
+FREELANCE_JOBS.md / FREELANCE_JOBS.json against existing bid folders + this
+RANKING. Four of the five in the monitor's set already carried a verdict
+from a prior tick:
+
+- **BID / READY (this run)** Python API client for tabula-py table extractor
+  (dry run #146, $193 avg, 0 bids, score 13) -- genuinely NEW (no folder, no
+  prior verdict). Scope is small, Python-3-only, readability-first, clean
+  error handling: exactly in-lane. Built + verified a working client this run:
+  `python PoC.py selftest` -> 10/10 pass, exit 0; `python PoC.py demo` -> a
+  real 2-page PDF extracted to a uniform-width CSV + valid JSON, exit 0.
+  Two backends with clean auto-fallback (tabula-py first, then a pure-Python
+  pymupdf path), typed result objects, a stable error hierarchy, and a tiny
+  CLI (selftest / extract / demo). HONEST LIMIT: this box has no Java and no
+  tabula-py, so the tabula-py backend is code-reviewed and its error path is
+  verified (raises a clean, actionable message, not a raw traceback); the
+  pymupdf path is what was run live. On a machine with a JRE + `pip install
+  tabula-py`, tabula-py is the primary path and pymupdf is the safety net.
+  Bid written (no em-dashes, no AI, first-person, signed "Cairn"). READY --
+  saved for Jake (no Freelancer.com account in CREDENTIALS.md). Fresh 0-bid
+  post = first-mover window.
+- **BID on Python track / WATCH on full 90-day (this run)** Python Dev +
+  Digital Marketing for FXDashboard ($497 avg, 0 bids, score 14) -- re-visited.
+  Prior tick marked it WATCH (dual dev+marketing, truncated scope). I built +
+  verified the "Python automation: marketing data scripts" half this run
+  (`PoC.py` pipeline: fetch -> normalize -> channel aggregation -> low-conv
+  flagging -> CSV+JSON), `python PoC.py selftest` -> 12/12 pass, exit 0. I do
+  NOT deliver the WordPress/SEO/landing-page marketing half, so the bid scopes
+  to the Python track and recommends a marketer alongside the build. If the
+  client wants an all-in-one, that is out of lane and stays WATCH. Flagged to
+  Jake: bid the Python track (first-mover, 0 bids) or hold for a dev-only scope.
+- **WATCH (unchanged)** High-Speed Kmart SKU Checkout Automation (5-account,
+  $1,612 avg) -- multi-account concurrent purchasing/checkout automation =
+  ToS-violating + scalper tooling; not BID-able on principle (verdict stands
+  from 2026-10-13).
+- **WATCH (unchanged)** Property24 Agent Data Scraping ($218 avg) -- clear
+  in-lane scope, but property24.ie still does not resolve from this box (DNS
+  fail re-confirmed this run) and the reachable .com/.com.au variants are JS
+  SPAs with no server-rendered phone markup (verdict stands from 2026-10-13).
+- **SKIP (unchanged)** Codex Integration Training for Website ($42 avg) -- a
+  tutoring/consulting ask, not a build; budget below the effort (verdict stands
+  from 2026-10-13).
 
 ## New this tick (2026-10-14 ~09:20 CT, monitor fired hf_new=13, sig b8ad37c9fc)
 
@@ -183,7 +230,8 @@ SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 | 14 | Python CLI for win32com Excel automation bridge (pilot #131) | $245 | **BID (READY this run)** | in-lane (Python 3 + win32com, clarity-first), fresh 0-bid post; built+verified bridge, selftest 17/17, bid written |
 | 15 | Automated Data-Extraction + API (8 sites) | $729 | BID (READY, prior) | in-lane (scrape+API), already has verified PoC+bid |
 | 15 | SaaS Document Automation Platform | $463 | SKIP | InDesign+Azure SaaS build, wrong stack, far beyond a gig |
-| 14 | Python Dev + Digital Marketing (FXDashboard) | $496 | WATCH | 90-day dev+marketing dual-role, needs a scoping call (prior) |
+| 14 | Python Dev + Digital Marketing (FXDashboard) | $497 | **BID (Python track this run)** / WATCH (full 90-day) | in-lane for the "Python automation" half; built+verified marketing-data pipeline (selftest 12/12, exit 0). Marketing/WordPress half out of lane -> bid scopes to Python track, recommends marketer alongside; flag Jake |
+| 13 | Python API client for tabula-py table extractor (dry run #146) | $193 | **BID (READY this run)** | in-lane (Python 3 + API client + clean errors); built+verified client (selftest 10/10, exit 0), tabula-py primary with pymupdf fallback, honest note on no-Java box; fresh 0-bid post |
 | 14 | WhatsApp & Messenger Reply Automation | $1038 | **BID (READY this run)** | in-lane (both official Meta APIs); DEFECT FIXED (was falsely marked "READY, prior" with no folder/PoC/bid - conflated with the Keyword System job); built+verified single service, selftest 38/38 + live HTTP 4/4, bid written |
 | 14 | Website Phone Number Scraper | $211 | BID (READY, prior) | in-lane (scrape), already has verified PoC+bid |
 | 14 | Needoh Stock Watchlist Builder | $17 | BID (READY, prior) | in-lane (watchlist app), already has verified PoC+bid |
