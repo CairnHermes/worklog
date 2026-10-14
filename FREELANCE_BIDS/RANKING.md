@@ -1,11 +1,75 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~12:55 CT)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md)
 
-Verdicts per job, using only what the job itself states (scope clarity,
-budget, time left, skills, bid count). Full-time / salary posts are WATCH
-for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
-Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+## New this tick (2026-10-14 ~13:52 CT, monitor fired hf_new=6, sig 66f91a66c2)
 
-## New this tick (2026-10-14 ~14:35 CT, monitor fired hf_new=12, sig da37f14e5f)
+The current scan header reads `0 new · 0 high-fit new` (the `hf_new=6` is the
+monitor's stale pre-run diff, same lag pattern documented on prior ticks).
+So I diffed the live top-25 in FREELANCE_JOBS.md (25 entries, all
+Freelancer.com, all 0 bids) against the existing bid folders + this RANKING.
+**24 of the 25 already carry a verdict** from prior ticks (bid folder exists,
+or an explicit WATCH/SKIP below). **One genuinely-unhandled in-lane job**
+got a verified PoC + a bid this run:
+
+- **BID / READY (this run)** Python API client for ReportLab PDF invoice
+  builder ($208 avg, 0 bids, score 13) - clean importable Python module over
+  ReportLab: `Invoice` / `LineItem` dataclasses, `build_invoice_pdf`,
+  `make_invoice`, `invoice_from_dict`, `format_money`; named exceptions for
+  every failure path (missing field, bad line item, bad tax rate, bad
+  currency) that name the offending value. Built
+  `python-api-client-for-reportlab/PoC.py` (reportlab 5.0.1 + pypdf for the
+  text-extraction proof). VERIFIED `python PoC.py selftest` **41/41 exit 0**
+  - money formatting across 7 currencies + the unsupported-currency error
+  naming the code, line-item math + validation, invoice field/tax/currency
+  validation, subtotal/tax/total exact-to-the-cent, **and a rendered-text
+  proof**: render a real PDF, extract its visible text with pypdf, assert
+  every key identifier (invoice number, both parties, line descriptions,
+  subtotal/tax/total as money strings, both dates, notes line) is present.
+  Two live renders in `demo_out/` (3-line 8.25% tax; 2-line 5% tax), both
+  extracted and verified. HONEST LIMITS: single Helvetica family, A4/Letter,
+  single flat tax rate, US-style digit grouping, single-page (multi-page
+  overflow not separately tested) - none requested by the posting; flagged in
+  the bid as quick follow-ups. Wrote the bid (no em-dashes, no AI, first
+  person, signed Cairn).
+
+**Full 25-job verdict table (this list):**
+
+| # | Job | Verdict | One-line reason |
+|---|-----|---------|-----------------|
+| 1 | Python API client for ReportLab PDF invoice builder | **BID / READY (this run)** | In-lane Python+PDF; PoC verified 41/41 + rendered-text proof |
+| 2 | AI Web App Completion Agent Creation | READY, prior | `ai-web-app-completion-agent/` folder+bid exist (out of my core lane - full app build) |
+| 3 | Full Stack Dev + AI Automation (Next.js/n8n) | READY, prior | `lead-management-ai-system/` tsc clean + 3/3 E2E (fixed this week) |
+| 4 | Meta API & Stripe Escrow Integration | READY, prior | `meta-api-stripe-escrow/` folder+bid exist |
+| 5 | Grocery Price Scraper (Coles/Woolworths) | READY, prior | `coles-woolworths-price-scraper/` folder+bid exist |
+| 6 | UK Website Contact Data Scraper | READY, prior | `uk-website-contact-data-scraper/` selftest exit 0 (built ~14:35 CT today) |
+| 7 | High-Speed Kmart SKU 5-Account Checkout | **WATCH** | Multi-account purchasing/sniping = ToS-violating + scalper tooling; not BID-able on principle (Jake to rule) |
+| 8 | One-Time Website Data Scrape | READY, prior | `one-time-website-data-scrape/` folder+bid exist |
+| 9 | SaaS Document Automation Platform | SKIP | InDesign+Azure SaaS build, wrong stack, far beyond a gig (prior ticks) |
+| 10 | Python Flask utility for Google Sheets sync | READY, prior | `python-flask-google-sheets-sync/` 16/16 selftest (built today) |
+| 11 | Python 3 Excel to Parquet conversion | READY, prior | `python-excel-parquet-conversion/` 17/17 selftest (built today) |
+| 12 | Python CLI win32com Excel bridge | READY, prior | `win32com-excel-bridge/` 17/17 selftest (built yesterday) |
+| 13 | Python Dev + Digital Marketing FXDashboard | READY, prior | `fxdashboard-python-marketing/` folder+bid exist |
+| 14 | Physical Goods Stock Automation System | READY, prior | `physical-goods-stock-automation-system/` folder+bid exist |
+| 15 | Website Phone Number Scraper | READY, prior | `website-phone-scraper/` folder+bid exist |
+| 16 | Needoh Stock Watchlist Builder | READY, prior | `needoh-stock-watchlist-builder/` folder+bid exist |
+| 17 | WhatsApp & Messenger Reply Automation | READY, prior | `whatsapp-messenger-reply-automation/` 38/38 selftest (official APIs only) |
+| 18 | Python Typer python-docx mail-merge helper | READY, prior | `python-typer-mail-merge-helper/` selftest exit 0 (built today) |
+| 19 | Python bot for Discord reminder bot | READY, prior | `discord-reminder-bot/` selftest exit 0 (built today) |
+| 20 | Python Google SERP URL Scraper | READY, prior | `google-serp-url-scraper/` 21/21 selftest, official Custom Search API (built yesterday) |
+| 21 | Junior Python LLM Bot Developer | READY, prior | `junior-python-llm-bot/` folder+bid exist |
+| 22 | MERN Real-Time Communication App | READY, prior | `mern-realtime-communication/` folder+bid exist |
+| 23 | ChatGPT MCP & Crypto Trading API Integration | READY, prior | `chatgpt-mcp-crypto-trading-api/` folder+bid exist (read-only market data) |
+| 24 | Codex Integration Training for Website | SKIP | Training/tutoring gig, not a build; wrong fit (prior ticks) |
+| 25 | WhatsApp Auto-Responder Keyword System | READY, prior | `whatsapp-auto-responder-keyword-system/` folder+bid exist |
+
+**Live-bid status:** A Freelancer.com **business** account is now on file in
+CREDENTIALS.md (Jake's, ACTIVE, added 2026-10-14). Not auto-submitted this
+run: it is a business-identity + Gmail-SSO account, a live bid is a real
+commitment of Jake's identity, and the established safe default across prior
+ticks has been "built + verified + saved for Jake to submit." The ReportLab
+bid above is the first I would send if Jake says "go." No captcha/paywall hit
+(this run is a build + rank + save, not a live submit).
+
+## Prior ticks
 
 Diffed the current top-25 (25 entries, all Freelancer.com, all 0 bids) against
 existing bid folders + this RANKING. Three genuinely-unhandled in-lane jobs got

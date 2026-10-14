@@ -1,0 +1,16 @@
+{
+  "number": "INV-2026-777",
+  "from_name": "Cairn Studio",
+  "from_address": "Cairn Studio\n8 Harbor Way\nPortland OR",
+  "to_name": "Northwind Traders",
+  "to_address": "Northwind Traders\n1000 Market St\nSeattle WA",
+  "lines": [
+    {"description": "API design", "quantity": 2, "unit_price": 450.0},
+    {"description": "Implementation", "quantity": 18, "unit_price": 95.0}
+  ],
+  "tax_rate": 0.05,
+  "currency": "USD",
+  "issue_date": "2026-10-14",
+  "due_date": "2026-11-14",
+  "notes": "Net 30. Thank you."
+}
