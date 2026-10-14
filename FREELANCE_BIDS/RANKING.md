@@ -5,6 +5,39 @@ budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
+## New this tick (2026-10-14 ~00:00 CT, monitor fired hf_new=5, sig 7b904739bd)
+
+Recurring pattern (documented 03:33 / 15:15 / 22:05 / 22:45 ticks): the
+monitor's "current" is the PRE-run scanner output captured at fire time, so
+it can differ from the post-run scan (post-run re-ran, marked the set seen,
+0 new). The genuinely unhandled jobs were found by diffing the current
+top-25 in FREELANCE_JOBS.json against existing bid folders + this RANKING.
+24 of the 25 current top-25 jobs already carry a verified PoC + saved bid
+from prior runs (see table below). Exactly ONE was genuinely new and
+unhandled:
+
+- **BID / READY** Python Google SERP URL Scraper ($20 avg, 0 bids, score
+  13) -- new this tick. Scope is clear and squarely in-lane (Python,
+  scraping, API, Excel export, compact script, no ads/snippets/maps,
+  keyword/position/page/URL columns). Built + verified a working PoC this
+  run: `python PoC.py selftest` -> "all checks passed" (21/21, exit 0);
+  live demo `python PoC.py "best espresso machine" "kubernetes helm chart"
+  --provider mock --pages 5 --out demo` -> 46 organic URLs, a valid
+  multi-sheet serp_urls.xlsx (read back: header + 22 body rows, absolute
+  URLs, no ad hosts) + serp_urls.csv. The .xlsx is written with the
+  standard library only (zero third-party deps). HONEST DESIGN: the live
+  provider is the OFFICIAL Google Custom Search JSON API (ToS-clean); I do
+  NOT scrape google.com HTML from a datacenter IP (ToS + bot-walled), so a
+  "working" scrape built that way would not be an honest deliverable. The
+  selftest uses a deterministic mock returning the exact same payload shape
+  and sharing the identical parse/filter path, so the verified logic is the
+  logic the live provider runs; the live API path is code-reviewed (needs
+  the client's free API key + engine id). Bid written (no em-dashes, no AI
+  mention, first-person, signed "Jake"). READY -- saved for Jake (no
+  Freelancer.com account in CREDENTIALS.md, so not submitted live). Note:
+  $20 avg is a low budget, but a fresh 0-bid post and a strong skill
+  match; worth a first-mover bid if we want to take it.
+
 ## New this tick (2026-10-13 ~22:45 CT, monitor fired hf_new=6, sig b69a52c91c)
 
 Recurring pattern (documented 03:33 + 15:15 ticks): the monitor tick saw a
@@ -97,6 +130,7 @@ SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 | 14 | Website Phone Number Scraper | $211 | BID (READY, prior) | in-lane (scrape), already has verified PoC+bid |
 | 14 | Needoh Stock Watchlist Builder | $17 | BID (READY, prior) | in-lane (watchlist app), already has verified PoC+bid |
 | 14 | Physical Goods Stock Automation | $315 | BID (READY, prior) | in-lane (automation), already has verified PoC+bid |
+| 13 | Python Google SERP URL Scraper | $20 | **BID (READY this run)** | in-lane (Python scrape + official API + xlsx), fresh 0-bid post; selftest 21/21 + live mock demo, bid written |
 | 13 | Property24 Agent Data Scraping | $214 | WATCH | property24.ie unreachable from this box (prior) |
 | 13 | Junior Python LLM Bot Developer | $84 | BID (READY, prior) | in-lane (Python bots), already has verified PoC+bid |
 | 13 | Crypto Trading Bot: Strategy Dev | $2019 | WATCH | strategy research on running bot; touches trading lane, flag Jake |
@@ -256,6 +290,20 @@ runs (see below). Only these two are genuinely new and unhandled:
   off-platform.
 
 ## Run log
+- 2026-10-14 ~00:00 CT (cron): monitor re-fired on the refreshed top-25
+  (hf_new=5, sig 7b904739bd; pre-run scanner then consumed the set -> 0 new
+  post-run). Diffed current top-25 vs folders+RANKING: 24 already READY, one
+  genuinely unhandled -> Python Google SERP URL Scraper ($20 avg, 0 bids).
+  BUILT a working PoC (zero third-party deps, stdlib-only xlsx writer) and
+  VERIFIED it: selftest 21/21 exit 0 (counts, ad/related/snippet exclusion,
+  cross-page dedupe, stop-early paging, xlsx read-back, csv, clean no-cred
+  live failure, seeded determinism); live mock demo -> 46 URLs + valid
+  multi-sheet xlsx + csv. Honest design: live provider = OFFICIAL Google
+  Custom Search JSON API (not google.com HTML scraping, which is ToS +
+  bot-walled); mock shares the identical parse/filter path. Bid written
+  (no em-dashes, no AI, first-person, signed Jake). Saved to
+  FREELANCE_BIDS/google-serp-url-scraper/. No Freelancer.com account in
+  CREDENTIALS.md -> not submitted live; saved for Jake.
 - 2026-10-13 ~22:45 CT (cron): monitor re-fired on the refreshed top-25
   (hf_new=6, sig b69a52c91c; pre-run scanner then consumed the set -> 0 new
   post-run). Diffed top-25 vs folders+RANKING: two genuinely unhandled.
