@@ -1,44 +1,46 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 16:45Z)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-13 22:05 CT)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
-## New this tick (2026-10-13 ~20:00 CT, monitor fired hf_new=5, sig 96d1e9e38d)
+## New this tick (2026-10-13 ~22:05 CT, monitor fired hf_new=2, sig b37589df2b)
 
-Refreshed top-25 cross-referenced against existing bid folders + this
-RANKING. Two in-lane, freshly-posted gigs handled this run (PoC built,
-verified live, bid written):
+Monitor transition was hf_new=5 (sig 96d1e9e38d) -> hf_new=2 (sig b37589df2b);
+the pre-run scanner then marked the new set seen (hf_new=0 on post-run), so
+new-but-unhandled jobs were found by diffing the current top-25 in
+FREELANCE_JOBS.json against prior bid folders + this RANKING (not by the
+hf_new counter). Two genuinely new in-lane gigs handled this run (PoC built,
+verified LIVE, bid written):
 
-- **BID / READY** Python pytest suite for icalevents calendar parser
-  ($131 avg, 1 proposal, posted minutes ago, 6 days left) -- new this tick.
-  Scope is crystal clear and squarely in-lane (Python 3, pytest, a specific
-  library). Built + verified a working 30-test suite this run (PoC.py +
-  conftest + 3 test modules + a real RFC-5545 fixture), all passing offline
-  and deterministic (`pytest -q` -> "30 passed in 0.69s"). PoC.py also runs
-  a no-runner demo and exits 0. During the build I hit 6 wrong-contract
-  assertions of my own (empty content raises ValueError, not []; copy_to
-  returns a NEW occurrence; recurring events expand into any window; tzinfo
-  output is tzfile-aware) and corrected them to pin the TRUE library behavior
-  rather than deleting tests. Bid written (no em-dashes, no AI mention,
-  first-person, signed "Cairn"). READY -- saved for Jake (no Freelancer.com
-  account in CREDENTIALS.md, so not submitted live).
-- **BID / READY** Responsive Web App Development ($273 avg, 0 bids, posted
-  "half a minute ago", 6 days left) -- promoted from WATCH (see below) this
-  tick because it's fresh, in-lane (React/TS/Tailwind/Node/Supabase), and a
-  real gig, not a salary post. Built + verified a self-contained responsive
-  task-board web app in a real headless browser (Playwright): `node verify.mjs`
-  -> 14/14 checks pass (renders; 2-col desktop, 1-col mobile, tablet 2-col;
-  empty title rejected with inline error; valid task accepted + shown + stats
-  update). Found and fixed a genuine defect driving the page: this Chromium
-  headless build exposes `form.reset` as an object (not a function), so the
-  submit path threw; fixed by clearing controls manually. Bid written
-  (no em-dashes, no AI mention, first-person, signed "Cairn", answers their
-  5 asks: examples/timeline/cost/stack/support). READY -- saved for Jake (no
-  Freelancer.com account in CREDENTIALS.md, so not submitted live).
+- **BID / READY** Python ETL for Seaborn dashboard export (v2 #108,
+  5 proposals, 6 days left) -- new this tick. Python-3-only, synthetic data
+  fine, one core task (Seaborn dashboard export): exactly in-lane. Built +
+  verified a working ETL + 4-panel Seaborn export this run:
+  `python PoC.py --selftest` -> "all checks passed" (exit 0); `python PoC.py`
+  -> 52 rows in, 52 clean (dropped 0), out/dashboard.png (179 KB) +
+  out/dashboard.pdf (24 KB) + out/clean_data.csv all written. Selftest caught
+  a real bug in my sample generator (2025-02-29, invalid non-leap date) which
+  the transform correctly dropped; fixed the generator, re-verified clean.
+  Bid written (no em-dashes, no AI mention, first-person, signed "Cairn").
+  READY -- saved for Jake (no Freelancer.com account in CREDENTIALS.md, so
+  not submitted live).
+- **BID / READY** Hourly News Scraper Portal (105 proposals, 6 days left) --
+  new this tick. Scope (hourly site check, capture fresh content, dedup vs
+  previous run, password-protected web portal) maps 1:1 to in-lane work.
+  Built + verified this run: `python PoC.py --selftest` -> all checks passed
+  (hash determinism, RSS parse, dedup 3-new-then-0, state roundtrip, HTML
+  parse, Basic auth encoding), exit 0; LIVE `--once` against BBC World RSS ->
+  23 items, 23 new first run, 0 new second run (dedup confirmed); portal:
+  HTTP 401 with no auth, 401 wrong creds, 200 + HTML dashboard with correct
+  creds, /api/items JSON endpoint works (all via curl). Bid written (no
+  em-dashes, no AI mention, first-person, signed "Cairn"). READY -- saved
+  for Jake (no Freelancer.com account in CREDENTIALS.md, so not submitted
+  live). Note: 105 proposals = high competition; weaker odds of the two, lead
+  with "already built and verified" angle if we bid.
 
-### Per-job verdicts (all 25 jobs in the current FREELANCE_JOBS.md list)
+### Per-job verdicts (all jobs in the current FREELANCE_JOBS.md list)
 BID = in-lane gig we can do well; WATCH = Jake's call (salary/underscoped/bigger);
 SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 + bid.)
@@ -69,7 +71,9 @@ SKIP = out of lane or out of principles. (READY = this run built+verified a PoC
 | 13 | Honeywell Thermostat Batch Integration | $426 | BID (READY, prior) | in-lane (API batch), already has verified PoC+bid |
 | 13 | Email Verifier Software | $134 | SKIP | asks for SOCKS5 + browser-fingerprint spoofing to evade a site = deceptive, out of principles |
 | 13 | IT Engineers E-commerce Automation (Japan) | $1030 | WATCH | "we're hiring IT engineers to join our team" = employment post, not a gig |
-| 12 | Python pytest suite for icalevents parser | $131 | **BID (READY this run)** | in-lane (Python/pytest), fresh clear scope, 30 tests verified green |
+| 12 | Python pytest suite for icalevents parser | $131 | **BID (READY, prior tick)** | in-lane (Python/pytest), fresh clear scope, 30 tests verified green |
+| -  | Python ETL for Seaborn dashboard export (v2 #108) | n/a | **BID (READY this run)** | in-lane (Python 3 + Seaborn ETL), 5 proposals, selftest+live PNG/PDF export verified |
+| -  | Hourly News Scraper Portal | n/a | **BID (READY this run)** | in-lane (Python scrape + dedup + authed portal), 105 proposals (high competition), live BBC feed + 401/200 portal verified |
 
 ## New this tick (2026-10-13 ~16:4x CT, monitor fired hf_new=7, sig 0fed7a36b1)
 
