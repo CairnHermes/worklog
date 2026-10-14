@@ -1,0 +1,15 @@
+{
+  "name": "leadflow-poc",
+  "version": "1.0.0",
+  "description": "AI-powered lead management system (PoC) - lead intake, AI summaries via provider adapters (OpenAI or local OpenAI-compatible), n8n webhook + queue, Playwright-verified E2E flow. No real API key required to run the verified path.",
+  "type": "module",
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "playwright test --workers=1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@types/node": "^20.19.43",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,9 +1,53 @@
-# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~10:30 CT)
+# Freelance Job RANKING (all jobs in FREELANCE_JOBS.md, as of 2026-10-14 ~12:55 CT)
 
 Verdicts per job, using only what the job itself states (scope clarity,
 budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
+
+## New this tick (2026-10-14 ~12:55 CT, monitor fired hf_new=6, sig 38167ce286)
+
+Recurring pattern (documented on prior ticks): the monitor's "current" is the
+PRE-run scanner output captured at fire time, so `hf_new=6` here is the count
+at fire, not necessarily 6 genuinely new jobs this run. The genuinely
+unhandled jobs were found by diffing the current top-25 in
+FREELANCE_JOBS.md / FREELANCE_JOBS.json (25 entries, all seen) against
+existing bid folders + this RANKING. Two jobs in the current list had no
+verified bid yet:
+
+- **BID / READY (this run)** Full Stack Developer + AI Automation | Next.js,
+  n8n & OpenAI ($173 avg, 0 bids, score 17) -- in-lane (TypeScript, Node,
+  API, automation). A prior tick had BUILT real code for this
+  (`lead-management-ai-system/`: Node HTTP server + provider-adapter
+  summaries + n8n-style webhook/queue + Playwright E2E) and RANKING claimed it
+  "READY, prior" -- but there was NO bid and the code did NOT actually run.
+  This run I proved and fixed it: (1) `tsconfig.json` forced `module:
+  CommonJS` on an ESM project -> `tsc --noEmit` failed on `import.meta`
+  (fixed to NodeNext + noEmit + allowImportingTsExtensions); (2) `server.mts`
+  imported `./src/leads.js` but only `leads.ts` exists -> the Playwright server
+  crashed with `ERR_MODULE_NOT_FOUND`, so the E2E could never have passed
+  (root cause of the old "3 failed"; fixed the import, removed the dead
+  duplicate `server.ts`); (3) 3 parallel workers each spawned a server on
+  port 8765 (harness race; `npm test` now `--workers=1`). RESULT: `tsc
+  --noEmit` exit 0 + `npm test` 3/3 pass (real browser flow). Wrote the
+  missing bid (no em-dashes, no AI, first person). READY -- saved for Jake
+  (no Freelancer.com account in CREDENTIALS.md).
+- **BID / READY (this run)** Python Flask utility for Google Sheets API sync
+  ($206 avg, 0 bids, score 14, iteration #125) -- genuinely unhandled (no
+  folder, no bid). In-lane (Python, API, small clarity/error-handling scope).
+  Built a stdlib-first PoC this run: SheetRef parser + swappable backend
+  (real HTTP Sheets client via urllib, or in-memory LocalBackend for offline
+  tests) + sync engine + optional thin Flask service. VERIFIED: `python
+  PoC.py selftest` -> 16/16 pass, exit 0 (drives a LOCAL HTTP server to
+  exercise the real transport path incl. 401 handling), `python PoC.py demo`
+  -> exit 0, `python PoC.py serve` -> clean actionable message where Flask is
+  absent. HONEST LIMIT: live `sheets.googleapis.com` needs the client's own
+  OAuth2 token (not available); the transport layer it uses was driven live
+  against the local mock. Wrote the bid (no em-dashes, no AI, first person).
+  READY -- saved for Jake (no Freelancer.com account in CREDENTIALS.md).
+
+Other jobs in the current 25-job list already carry a verdict from prior
+ticks (folders + entries below); no new handling needed this run.
 
 ## New this tick (2026-10-14 ~10:30 CT, monitor fired hf_new=5, sig aa191b4677)
 
