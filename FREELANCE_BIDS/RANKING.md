@@ -5,6 +5,49 @@ budget, time left, skills, bid count). Full-time / salary posts are WATCH
 for Jake (not gig bids). "READY" = PoC verified + bid written, saved for
 Jake to submit (no Freelancer.com account exists yet; see CREDENTIALS.md).
 
+## New this tick (2026-10-14 ~14:35 CT, monitor fired hf_new=12, sig da37f14e5f)
+
+Diffed the current top-25 (25 entries, all Freelancer.com, all 0 bids) against
+existing bid folders + this RANKING. Three genuinely-unhandled in-lane jobs got
+a verified PoC + a bid this run:
+
+- **BID / READY (this run)** UK Website Contact Data Scraper ($157 avg, 0 bids,
+  score 15) -- one-off paginated UK-site scrape to .xlsx. In-lane (scrape,
+  normalise, export). Built `uk-website-contact-data-scraper/PoC.py`:
+  pagination-follower crawl + card-aware record split + email/phone/address
+  extraction + +44 normalisation + dedupe + .xlsx. VERIFIED `python PoC.py
+  selftest` exit 0 (spins a local 3-page paginated directory over real HTTP;
+  5 unique records, 5 phones all +44, dedupe + noise-email exclusion, valid
+  xlsx header + 5 rows). HONEST LIMIT: real run needs the client's target URL
+  (held until we agree); crawl/parse/normalise/xlsx path verified against a
+  local same-shape site. Wrote the bid (no em-dashes, no AI, first person).
+  READY -- saved for Jake (no Freelancer.com account in CREDENTIALS.md).
+- **BID / READY (this run)** Python Typer app for python-docx mail-merge helper
+  ($204 avg, 0 bids, score 13) -- small precisely-specified Typer + python-docx
+  tool. Built `python-typer-mail-merge-helper/PoC.py`: CSV loader + template
+  field extractor + per-row merge (paragraphs, tables, header/footer, incl.
+  fields split across runs) + dry-run `check` + named errors. VERIFIED
+  `python PoC.py selftest` exit 0 (builds its own template incl. a 3-run split
+  field + a table-cell field, merges 3 rows, reads all back to confirm clean
+  replacement, exercises the missing-file error paths) + real `check`/`merge`
+  CLI verified. HONEST LIMIT: `{{field}}` syntax assumed (job doesn't pin one).
+  Wrote the bid. READY -- saved for Jake (no Freelancer.com account).
+- **BID / READY (this run)** Python bot for Discord reminder bot ($200 avg, 0
+  bids, score 13) -- compact Discord bot (set / list / cancel reminders). Built
+  `discord-reminder-bot/PoC.py`: discord-free core (parse_duration,
+  ReminderStore, Scheduler) + lazy discord.py glue. VERIFIED `python PoC.py
+  selftest` exit 0 (10 duration-parsing cases, bad-input ValueErrors that name
+  the token, store add/due/get/cancel/list + per-user scoping, scheduler fires
+  exactly the due set with no double-fire) + `parse "in 2h 30m"` -> 9000.
+  HONEST LIMIT: reminders in-memory for this PoC (persistence flagged as an
+  add); live bot not exercised (no token/server). Wrote the bid. READY --
+  saved for Jake (no Freelancer.com account).
+
+Other jobs in the current 25-job list already carry a verdict from prior ticks
+(folders + entries below) or are WATCH/SKIP on the ethical line (Kmart
+multi-account checkout, Google SERP scrape -- both out on ToS/abuse grounds).
+No live bids submitted: no Freelancer.com account in CREDENTIALS.md.
+
 ## New this tick (2026-10-14 ~12:55 CT, monitor fired hf_new=6, sig 38167ce286)
 
 Recurring pattern (documented on prior ticks): the monitor's "current" is the
