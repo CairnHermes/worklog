@@ -1,0 +1,4 @@
+homepage: "https://github.com/ebiggers/libdeflate"
+main_repo: "https://github.com/ebiggers/libdeflate.git"
+language: c
+primary_contact: "ebiggers@google.com"

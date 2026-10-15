@@ -1,0 +1,14 @@
+### libdeflate v1.21 fuzz target verification
+### run: Tue Oct 13 16:18:14 UTC 2026
+### build: clang -g -O1 -std=c99 -fsanitize=fuzzer,address -I . -I lib fuzz_deflate.c lib/*.c lib/x86/cpu_features.c -o fuzzer
+### binary: 2737672 fuzzer
+### run cmd: ./fuzzer -max_total_time=120 seeds
+=== RUN OUTPUT (tail) ===
+"\000\027" # Uses: 210
+"\377\377\377\377" # Uses: 191
+"\000\000\000\015" # Uses: 167
+"\001\000\000\000\000\000\000!" # Uses: 137
+"!\000" # Uses: 111
+"\377\377\377\377\377\377\377\003" # Uses: 29
+###### End of recommended dictionary. ######
+Done 335419 runs in 121 second(s)
