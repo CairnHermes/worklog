@@ -1,5 +1,81 @@
 # Freelance Job RANKING (all jobs in FREELANCE_JOBS.md)
 
+> ## STANDING RANKING RULES (apply to EVERY tick, before listing candidates)
+> 1. **PAID-SUBSCRIPTION FLOOR (Jake 2026-10-15, verbatim):** "if a requirement requires we pay for a subscription service, rank them immediately at the bottom." => any job whose delivery depends on a paid subscription / paid API / paid SaaS access WE would have to fund ranks at the BOTTOM, below every free/open-source deliverable. Both scorers enforce this as a hard floor (freelance_scanner.py `paid_sub_required` -> -1000; widened_scanner.py `PAID_SUB` -> -1000); the LLM pass catches gray-area cases the keywords can't. Never rank a paid-sub job above a free one.
+> 2. **PREFERRED/SELECT FILTER (Jake 2026-10-15, verbatim):** "filter out preferred/select for now and then look for jobs from there... apply that from now on." => Jobs that require Freelancer Preferred or Select status are FILTERED OUT and SKIPPED. Focus on lower-payment jobs that do not carry that requirement. The LLM ranking pass + scanner both apply this: any job identified as Preferred/Select-gated gets a hard SKIP, no build, no bid.
+> 3. **COMPLETE-DELIVERABLE BAR (Jake 2026-10-14):** only bid the ENTIRE deliverable possible, verified line-by-line against the job's own acceptance criteria + PoC. No PoC-only / partial-state bids. State exactly which requirement items (if any) block the complete product.
+> 3. **SUBMIT GATE (rule 10b):** before ANY submission, post in Discord "submitting: X" + the link and wait for Jake's OK. No Freelancer.com account on file yet -> bids stay saved-for-Jake unless he drives the desktop login.
+> 4. **NO EM DASHES / EN DASHES** in any buyer-facing copy or Discord reply (use a single hyphen, comma, or period).
+
+## New this tick (2026-10-16 ~16:05 CT, monitor fired hf_new=2, sig bfef403338)
+
+Live top-25 in FREELANCE_JOBS.md (25 entries, all Freelancer.com, all 0 bids).
+The 2 genuinely-new high-fit jobs this monitor caught both land in my core
+Python + scraping + data-extraction lane and both had **0 bids**, so I built a
+verified PoC + a staged bid for each, and ranked the rest against the existing
+folders.
+
+**BID / READY (this run) - PoC verified, bid staged:**
+
+- **Weekly Stock & Price Web Scraper** ($399 avg, 0 bids, ~6 days left,
+  score 14). Two password-protected supplier portals (one bespoke, one
+  Magento): sign in to both, pull every SKU with price + stock, weekly Excel,
+  change detection. Built `weekly-stock-price-web-scraper/PoC.py` (requests
+  login + cookie session for standard and Magento `login[username]`/
+  `login[password]` forms, bs4 table parse, US + EU price normalisation,
+  openpyxl one-sheet-per-supplier, weekly schedule, price/stock/new-SKU change
+  flags). VERIFIED `python PoC.py selftest` **30/30 exit 0** (log in
+  `selftest_out/`). Wrote the bid (no em-dashes, no AI, first person, signed
+  Cairn).
+- **PDF Forms & Web Text Extraction (election)** ($77 avg / INR 1500-12500,
+  0 bids, ~4 days left, score 13). Fillable + manually-typed election PDFs
+  plus the corresponding website, into one organised Excel workbook. Built
+  `pdf-forms-web-text-extraction/PoC.py` (pypdf AcroForm fields, a
+  "Label: value" typed-entry parser that keeps numeric field values like
+  "Ballot Count: 240" and drops prose + plain totals, requests + bs4 web text
+  and tables, one sheet per source + CSV mirror). VERIFIED `python PoC.py
+  selftest` **34/34 exit 0** (log in `selftest_out/`). Wrote the bid (no
+  em-dashes, no AI, first person, signed Cairn).
+
+**LIVE-BID STATUS (this run):** saved for Jake, NOT submitted. This is an
+unattended cron run with no live approver, the sanctioned bid path types the
+proposal in the logged-in desktop Opera (approval-gated when unattended), and
+Freelancer login carries a human-only reCAPTCHA I will not solve. Both bids +
+PoCs + exact manual steps are staged in
+`SUBMIT_NOW_HANDOFF_20261016.md`. Free-bid budget is scarce (5 total, 1 used
+on the WhatsApp $433 job on 2026-10-15), so these two are the selective
+spends.
+
+**Full 25-job verdict table (this list):**
+
+| # | Job | Verdict | One-line reason |
+|---|-----|---------|-----------------|
+| 1 | Meta API & Stripe Escrow Integration | READY, prior | `meta-api-stripe-escrow/` folder+bid exist |
+| 2 | Grocery Price Scraper Creation | WATCH | In-lane scraping, but a distinct generic posting; the `coles-woolworths` grocery PoC is reusable, no verified PoC for this exact posting yet |
+| 3 | MCA AOC-4 & MGT-7 Data | WATCH / top follow-up | Highest-budget in-lane job ($3385, 0 bids, Python+Pandas+Selenium) with no PoC this run; best next spend if a bid is to go to the biggest budget |
+| 4 | UK Website Contact Data Scraper | READY, prior | `uk-website-contact-data-scraper/` selftest exit 0 |
+| 5 | High-Speed Kmart SKU 5-Account Checkout | WATCH | Multi-account purchasing/sniping = ToS-violating + scalper tooling; Jake to rule (carried) |
+| 6 | One-Time Website Data Scrape | READY, prior | `one-time-website-data-scrape/` folder+bid exist |
+| 7 | Weekly Stock & Price Web Scraper | **BID / READY (this run)** | In-lane Python+scrape; PoC verified 30/30 + login/Excel/change-detection proof |
+| 8 | Email Automation & Warmup System | WATCH | In-lane automation+API, but Mailwizz warmup may need a paid service (paid-sub floor) and no PoC this run |
+| 9 | AI-Enhanced Software Engineering | WATCH | Java + AI workflow, not core Python/TS lane; no PoC |
+| 10 | Build PRESTIA AI SaaS Platform | WATCH | Large multi-week full-stack build, not a quick gig |
+| 11 | Full-Stack Dev for PRESTIA | WATCH | Duplicate posting of #10 |
+| 12 | Frontend Development Engineer | WATCH | $28700 = salary/full-time, not a gig bid (per rule) |
+| 13 | Physical Goods Stock Automation System | READY, prior | `physical-goods-stock-automation-system/` folder+bid exist |
+| 14 | End-to-End Flight Booking Automation | WATCH | In-lane automation+API, 0 bids, good budget, but multi-provider+payment build; no PoC this run |
+| 15 | Python Flask utility for Google Sheets sync | READY, prior | `python-flask-google-sheets-sync/` 16/16 selftest |
+| 16 | Python 3 automation Excel to Parquet | READY, prior | `python-excel-parquet-conversion/` 17/17 selftest |
+| 17 | Python CLI win32com Excel bridge | READY, prior | `win32com-excel-bridge/` 17/17 selftest |
+| 18 | Website Phone Number Scraper | READY, prior | `website-phone-scraper/` folder+bid exist |
+| 19 | Needoh Stock Watchlist Builder | READY, prior | `needoh-stock-watchlist-builder/` folder+bid exist |
+| 20 | PDF Forms & Web Text Extraction (election) | **BID / READY (this run)** | In-lane Python+extraction; PoC verified 34/34 + AcroForm/typed/web proof |
+| 21 | Automated Social Engagement Script | WATCH | Social automation = platform ToS / account-ban risk; not core lane |
+| 22 | Python Typer app python-docx mail-merge | READY, prior | `python-typer-mail-merge-helper/` folder+bid exist |
+| 23 | ChatGPT MCP & Crypto Trading API | WATCH | Crypto + AI-adjacent, partial fit; `chatgpt-mcp-crypto-trading-api/` prior |
+| 24 | Codex Integration Training for Website | WATCH | Training/consulting not a build; low budget |
+| 25 | WhatsApp Auto-Responder Keyword System -- 2 | WATCH | Duplicate repost of the job already bid live 2026-10-15 (rank 100+/183) |
+
 ## New this tick (2026-10-14 ~13:52 CT, monitor fired hf_new=6, sig 66f91a66c2)
 
 The current scan header reads `0 new · 0 high-fit new` (the `hf_new=6` is the

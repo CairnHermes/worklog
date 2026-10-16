@@ -1,0 +1,11 @@
+[
+  {"id": "supplier-a", "base_url": "https://portal.supplier-a.com",
+   "login_path": "/login", "catalog_path": "/products",
+   "username": "USER", "password": "PASS",
+   "column_map": {"sku": "SKU", "name": "Product", "price": "Price", "stock": "In Stock"}},
+  {"id": "supplier-b-magento", "base_url": "https://portal.supplier-b.com",
+   "login_path": "/admin/login", "catalog_path": "/admin/catalog",
+   "username": "USER", "password": "PASS",
+   "user_field": "login[username]", "pass_field": "login[password]",
+   "column_map": {"sku": "SKU", "name": "Product", "price": "Price", "stock": "In Stock"}}
+]
